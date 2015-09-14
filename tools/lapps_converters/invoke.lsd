@@ -9,7 +9,7 @@ String output = args[3]
 String username = args[3] ?: "tester"
 String password = args[4] ?: "tester"
 
-String url = "${server.url}/anc:${service}"
-ServiceClient client = new ServiceClient(url, server.username, server.password)
+String url = "http://docker:8080/service_manager/invoker/docker:${service}"
+ServiceClient client = new ServiceClient(url, username, password)
 String json = new File(input).text
 new File(output).text = client.execute(json)

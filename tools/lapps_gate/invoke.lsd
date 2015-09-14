@@ -8,8 +8,8 @@ String password = args[4] ?: "tester"
 
 //String url = "http://grid.anc.org:8080/service_manager/invoker/anc:${service}"
 //String url = "http://localhost:8080/service_manager/invoker/anc:${service}"
-String url = "http://galaxy.lappsgrid.org/invoker/anc:${service}"
-//String url = "http://docker:8080/service_manager/invoker/docker:${service}"
+//String url = "http://galaxy.lappsgrid.org/invoker/anc:${service}"
+String url = "http://docker:8080/service_manager/invoker/docker:${service}"
 
 ServiceClient client = new ServiceClient(url, username, password)
 String json = new File(input).text
