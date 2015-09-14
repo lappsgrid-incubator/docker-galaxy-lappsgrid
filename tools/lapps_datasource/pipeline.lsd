@@ -1,0 +1,20 @@
+#!/usr/bin/env lsd
+
+include 'Config'
+
+String input = args[0]
+String token = args[1]
+String output = args[2]
+
+String key = new File(input).text.trim()
+
+def url = "${server.url}/${masc.id}"
+
+def service = new DataSourceClient(url, server.username, server.password)
+service.setToken(token)
+
+println "Fetching ${key}."
+String json = service.get(key)
+
+println "Writing ${output}"
+new File(output).text = json

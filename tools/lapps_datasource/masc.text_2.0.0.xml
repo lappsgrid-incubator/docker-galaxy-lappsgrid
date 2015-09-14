@@ -1,0 +1,11 @@
+<tool id='masc.text_2.0.0' name='MascTextSource' version='2.0.0'>
+  <description>Text files from the ANC's Manually Annotated SubCorpus in a JSON container</description>
+  <command interpreter='lsd'>invoke.lsd masc.text_2.0.0 $input $output</command>
+  <inputs>
+    <param name='input' type='data' format='json' label='input' />
+  </inputs>
+  <outputs>
+    <data name='output' format='json' />
+  </outputs>
+  <help>Text files from the ANC's Manually Annotated SubCorpus in a JSON container</help>
+</tool>

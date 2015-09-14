@@ -1,0 +1,19 @@
+<tool id="masc.list" name="List MASC" version="2.0.0">
+  <description>Lists all keys in MASC.</description>
+  <command interpreter="lsd">list.lsd $token $output</command>
+  <inputs>
+    <param name="token" type="text" label="OAuth Token" value="123abc"/>
+  </inputs>
+  <outputs>
+    <data name="output" format="txt"/>
+  </outputs>
+  <!--
+  <tests>
+    <test>
+      <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+      <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+    </test>
+  </tests>
+  -->
+  <help>Tokenizes the input file and writes the result to the output file.</help>
+</tool>

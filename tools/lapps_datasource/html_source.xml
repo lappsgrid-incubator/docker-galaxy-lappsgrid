@@ -1,0 +1,10 @@
+<tool id="html.source" name="HTML Source" version="2.0.0">
+  <description>Provides sample HTML output.</description>
+  <command interpreter="lsd">html.lsd $output</command>
+  <outputs>
+    <data name="output" format="html" label="HTML"/>
+  </outputs>
+  <help>
+Generates sample HTML to used for testing purposes
+  </help>
+</tool>

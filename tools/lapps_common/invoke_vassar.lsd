@@ -1,0 +1,38 @@
+#!/usr/bin/env lsd
+
+boolean useLocalhost = false
+
+String base = "http://grid.anc.org:8080/service_manager/invoker/anc"
+String username = "tester"
+String password = "tester"
+
+if (useLocalhost) {
+	base = "http://localhost:8080/service_manager/invoker/picard"
+	username = "operator"
+	password = "operator"
+}
+
+/*
+String defaultUsername
+String defaultPassword
+
+if (localhost) {
+	base = "http://localhost:8080/service_manager/invoker/picard"
+	defaultUsername = "operator"
+	defaultPassword = "operator"
+}
+else {
+	base = "http://grid.anc.org:8080/service_manager/invoker/anc"
+	defaultUserName = "tester"
+	defaultPassword = "tester"
+}
+*/
+
+String service = args[0]
+String input = args[1]
+String output = args[2]
+
+String url = "${base}:${service}"
+ServiceClient client = new ServiceClient(url, username, password)
+String json = new File(input).text
+new File(output).text = client.execute(json)

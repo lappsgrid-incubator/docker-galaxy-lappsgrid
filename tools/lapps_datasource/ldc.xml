@@ -1,0 +1,85 @@
+<tool id="ldc.demo.datasource" name="Linguistic Data Consortium (Demo) " version="1.0.0">
+    <description>Retrieve a Gigaword document.</description>
+    <command interpreter="lsd">ldc.lsd $language.language_select $language.key $token $output</command>
+    <inputs>
+        <param name="token" type="text" label="OAuth Token"/>
+        <conditional name="language">
+            <param name="language_select" type="select" label="Language">
+                <option value="EN">English</option>
+                <option value="ES">Spanish</option>
+                <option value="AR">Arabic</option>
+                <option value="ZH">Chinese</option>
+            </param>
+            <when value="EN">
+                <param name="key" type="select" label="Document ID">
+                    <option value="NYT_ENG_19940701.0001">NYT_ENG_19940701.0001</option>
+                    <option value="NYT_ENG_19940701.0002">NYT_ENG_19940701.0002</option>
+                    <option value="NYT_ENG_19940701.0003">NYT_ENG_19940701.0003</option>
+                    <option value="NYT_ENG_19940701.0004">NYT_ENG_19940701.0004</option>
+                    <option value="NYT_ENG_19940701.0005">NYT_ENG_19940701.0005</option>
+                    <option value="NYT_ENG_19940701.0006">NYT_ENG_19940701.0006</option>
+                    <option value="NYT_ENG_19940701.0007">NYT_ENG_19940701.0007</option>
+                    <option value="NYT_ENG_19940701.0008">NYT_ENG_19940701.0008</option>
+                    <option value="NYT_ENG_19940701.0009">NYT_ENG_19940701.0009</option>
+                </param>
+            </when>
+            <when value="ES">
+                <param name="key" type="select" label="Document ID">
+                    <option value="AFP_SPA_19940701.0001">AFP_SPA_19940701.0001</option>
+                    <option value="AFP_SPA_19940701.0002">AFP_SPA_19940701.0002</option>
+                    <option value="AFP_SPA_19940701.0003">AFP_SPA_19940701.0003</option>
+                    <option value="AFP_SPA_19940701.0004">AFP_SPA_19940701.0004</option>
+                    <option value="AFP_SPA_19940701.0005">AFP_SPA_19940701.0005</option>
+                    <option value="AFP_SPA_19940701.0006">AFP_SPA_19940701.0006</option>
+                    <option value="AFP_SPA_19940701.0007">AFP_SPA_19940701.0007</option>
+                    <option value="AFP_SPA_19940701.0008">AFP_SPA_19940701.0008</option>
+                    <option value="AFP_SPA_19940701.0009">AFP_SPA_19940701.0009</option>
+                </param>
+            </when>
+            <when value="AR">
+                <param name="key" type="select" label="Document ID">
+                    <option value="AFP_ARB_19940513.0001">AFP_ARB_19940513.0001</option>
+                    <option value="AFP_ARB_19940513.0002">AFP_ARB_19940513.0002</option>
+                    <option value="AFP_ARB_19940513.0003">AFP_ARB_19940513.0003</option>
+                    <option value="AFP_ARB_19940513.0004">AFP_ARB_19940513.0004</option>
+                    <option value="AFP_ARB_19940513.0005">AFP_ARB_19940513.0005</option>
+                    <option value="AFP_ARB_19940513.0006">AFP_ARB_19940513.0006</option>
+                    <option value="AFP_ARB_19940513.0007">AFP_ARB_19940513.0007</option>
+                    <option value="AFP_ARB_19940513.0008">AFP_ARB_19940513.0008</option>
+                    <option value="AFP_ARB_19940513.0009">AFP_ARB_19940513.0009</option>
+                </param>
+            </when>
+            <when value="ZH">
+                <param name="key" type="select" label="Document ID">
+                    <option value="AFP_CMN_20001001.0001">AFP_CMN_20001001.0001</option>
+                    <option value="AFP_CMN_20001001.0002">AFP_CMN_20001001.0002</option>
+                    <option value="AFP_CMN_20001001.0003">AFP_CMN_20001001.0003</option>
+                    <option value="AFP_CMN_20001001.0004">AFP_CMN_20001001.0004</option>
+                    <option value="AFP_CMN_20001001.0005">AFP_CMN_20001001.0005</option>
+                    <option value="AFP_CMN_20001001.0006">AFP_CMN_20001001.0006</option>
+                    <option value="AFP_CMN_20001001.0007">AFP_CMN_20001001.0007</option>
+                    <option value="AFP_CMN_20001001.0008">AFP_CMN_20001001.0008</option>
+                    <option value="AFP_CMN_20001001.0009">AFP_CMN_20001001.0009</option>
+                </param>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="output" format="ldc" label="Gigaword Document"/>
+    </outputs>
+    <!--
+    <tests>
+      <test>
+        <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+        <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+      </test>
+    </tests>
+    -->
+    <help>
+        Fetches a single document from the Gigaword corpus at the Linguistic Data Consortium.
+
+        Currently only a small sample (nine documents) is available from the English Gigaword
+        corpus; selecting one of the other corpora will result in an error. In the future
+        the full Gigaword will be available to LDC members.
+    </help>
+</tool>

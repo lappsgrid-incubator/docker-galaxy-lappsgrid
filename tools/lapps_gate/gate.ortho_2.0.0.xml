@@ -1,0 +1,19 @@
+<tool id="gate.ortho_2.0.0" name="GATE OrthoMatcher v2.0.0" version="2.0.0">
+	<description>
+		GATE OrthoMatcher
+	</description>
+	<command interpreter="lsd">
+		invoke.lsd gate.ortho_2.0.0 $input $username $password $output
+	</command>
+	<inputs>
+		<param name="input" type="data" format="gate" label="input"/>
+		<param name="username" type="text" value="tester" label="Username"/>
+		<param name="password" type="text" value="tester" label="Password"/>
+	</inputs>
+	<outputs>
+		<data name="output" format="gate"/>
+	</outputs>
+	<help>
+		GATE OrthoMatcher
+	</help>
+</tool>

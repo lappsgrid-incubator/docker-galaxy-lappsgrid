@@ -1,0 +1,22 @@
+<tool id="masc.fetch" name="MASC" version="2.0.0">
+  <description>Retrieves a single document from MASC.</description>
+  <command interpreter="lsd">fetch.lsd key=${key} output=${output}</command>
+  <inputs>
+    <param name="key" type="text" label="Key" value="MASC3-0203"/>
+  </inputs>
+  <outputs>
+    <data name="output" format="json" label="MASC Document"/>
+  </outputs>
+  <!--
+  <tests>
+    <test>
+      <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+      <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+    </test>
+  </tests>
+  -->
+  <help>Retrieves a single document from MASC 3.0.0.
+  
+The document ID (key) is one of the user specified parameters.
+  </help>
+</tool>

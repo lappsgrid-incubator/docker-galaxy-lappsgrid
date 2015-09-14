@@ -1,0 +1,29 @@
+<tool id='ldc.list' name='LDC List (Demo)' version='1.0.0'>
+    <description>Obtain a list of document ID values available from an LDC Datasource.</description>
+    <command interpreter='lsd'>ldc_list.lsd $source $output</command>
+    <inputs>
+        <!-- <param name="token" type="text" label="OAuth Token"/>
+        <param name="start" type="text" label="Start" value="0"/>
+        <param name="end" type="text" label="End" value="10"/>
+        -->
+        <param name='source' type='select' label='Corpus'>
+            <option value="GWZHDemoDataSource">GWZHDemoDataSource</option>
+            <option value="GWENDemoDataSource">GWENDemoDataSource</option>
+            <option value="GWARDemoDataSource">GWARDemoDataSource</option>
+            <option value="GWESDemoDataSource">GWESDemoDataSource</option>
+            <option value="CallhomeArLexDemoDataSource">CallhomeArLexDemoDataSource</option>
+            <option value="CallhomeGeLexDemoDataSource">CallhomeGeLexDemoDataSource</option>
+            <option value="CallhomeEnPronlexDemoDataSource">CallhomeEnPronlexDemoDataSource</option>
+            <option value="CallhomeSpLexDemoDataSource">CallhomeSpLexDemoDataSource</option>
+            <option value="CallhomeJpLexDemoDataSource">CallhomeJpLexDemoDataSource</option>
+            <option value="CallhomeCnLexDemoDataSource">CallhomeCnLexDemoDataSource</option>
+            <option value="FairuzDemoDataSource">FairuzDemoDataSource</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name='output' format='txt'/>
+    </outputs>
+    <help>
+        <p>TODO Explain how to <a href="https://grid.anc.org:9443/ldc-authorize">fetch an OAuth token</a>.</p>
+    </help>
+</tool>

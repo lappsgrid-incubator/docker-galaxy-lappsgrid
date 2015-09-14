@@ -1,0 +1,19 @@
+<tool id="gate.coref_2.0.0" name="GATE Coreferencer v2.0.0" version="2.0.0">
+	<description>
+		Coreferencer from GATE
+	</description>
+	<command interpreter="lsd">
+		invoke.lsd gate.coref_2.0.0 $input $username $password $output
+	</command>
+	<inputs>
+		<param name="input" type="data" format="gate" label="input"/>
+		<param name="username" type="text" value="tester" label="Username"/>
+		<param name="password" type="text" value="tester" label="Password"/>
+	</inputs>
+	<outputs>
+		<data name="output" format="gate" label="GATE Coref"/>
+	</outputs>
+	<help>
+		Coreferencer from GATE
+	</help>
+</tool>

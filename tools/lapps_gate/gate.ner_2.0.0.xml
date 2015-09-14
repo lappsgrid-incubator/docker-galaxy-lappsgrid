@@ -1,0 +1,19 @@
+<tool id="gate.ner_2.0.0" name="GATE NamedEntityRecognizer v2.0.0" version="2.0.0">
+	<description>
+		GATE Named Entity Recognizer
+	</description>
+	<command interpreter="lsd">
+		invoke.lsd gate.ner_2.0.0 $input $username $password $output
+	</command>
+	<inputs>
+		<param name="input" type="data" format="gate" label="input"/>
+		<param name="username" type="text" value="tester" label="Username"/>
+		<param name="password" type="text" value="tester" label="Password"/>
+	</inputs>
+	<outputs>
+		<data name="output" format="gate" label="Named Entities (GATE)"/>
+	</outputs>
+	<help>
+		GATE Named Entity Recognizer
+	</help>
+</tool>

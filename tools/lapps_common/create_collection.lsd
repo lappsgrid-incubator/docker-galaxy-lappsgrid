@@ -1,0 +1,28 @@
+File input = new File(args[0])
+int start = args[1] as int
+int end = args[2] as int
+
+dir = new File("outputs")
+
+logfile = new File("/tmp/collection.log")
+
+void log(String message) {
+    logfile.withWriterAppend { it.println message }
+}
+
+if (!dir.exists()) {
+    if (!dir.mkdirs()) {
+        //log("ERROR: Unable to create ${dir.path}")
+        throw new IOException("Unable to create directory ${dir.path}")
+    }
+}
+
+String[] lines = input.readLines()
+lines[start..end].each { line ->
+    String id = line.trim()
+    File file = new File(dir, "${id}.txt")
+    //log("Created file ${file.path}")
+    file.text = id
+}
+log("Done.")
+

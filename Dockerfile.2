@@ -1,0 +1,17 @@
+# Lappsgrid Galaxy Flavour
+#
+# Version 0.1
+
+FROM bgruening/galaxy-stable:15.05
+
+MAINTAINER Keith Suderman, suderman@cs.vassar.edu
+
+ENV GALAXY_CONFIG_BRAND Lapps
+
+WORKDIR /galaxy-central
+
+ADD ./tool_shed_conf.xml config/tool_shed_conf.xml
+
+# Autostart script that is invoked during container start
+CMD ["/usr/bin/startup"]    
+    

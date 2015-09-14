@@ -1,0 +1,6 @@
+import groovy.xml.MarkupBuilder
+
+File output = new File(args[0])
+File input = new File("/tmp/evaluation.html")
+
+output.text = input.text

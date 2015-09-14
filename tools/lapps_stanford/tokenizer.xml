@@ -1,0 +1,19 @@
+<tool id="stanford.tokenizer" name="Stanford Tokenizer" version="2.0.0">
+  <description>Invokes the Stanford tokenizer service.</description>
+  <command interpreter="lsd">invoke.lsd service=tokenizer input=${input} output=${output}</command>
+  <inputs>
+    <param name="input" type="data" format="json" label="input"/>
+  </inputs>
+  <outputs>
+    <data name="output" format="json" label="output"/>
+  </outputs>
+  <!--
+  <tests>
+    <test>
+      <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+      <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+    </test>
+  </tests>
+  -->
+  <help>Tokenizes the input file and writes the result to the output file.</help>
+</tool>

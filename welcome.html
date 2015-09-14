@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="style/base.css" type="text/css" />
+</head>
+<body>
+    <div class="document">
+    	<!--
+        <div class="donemessagelarge">
+            <strong>The Language Application Grid</strong>
+            <hr>
+            <p>Welcome to the LAPPS Galaxy instance running at <a href="http://www.cs.brandeis.edu/" target="_blank">Brandeis University</a>.</p>
+            <p>Through this Galaxy instance you can:</p>
+            <ol>
+            	<li>Fetch documents from the MASC 3.0.0 or Gigaword sample sources.</li>
+            	<li>Create processing pipelines with tools from:
+            		<ol>
+            			<li>GATE</li>
+            			<li>Apache OpenNLP</li>
+            			<li>Stanford NLP</li>
+            		</ol>
+            	</li> 
+            </ol>
+            <p>Contacts:<a href="http://jamespusto.com/" target="_blank">James Pustejovsky</a> (jamesp@cs.brandeis.edu)</p>
+        </div>
+        -->
+        <div class="jumbotron">
+        	<div class="container">
+                <!--
+				<h1>The Language Application Grid</h1>
+				<hr/>
+				-->
+                <img src="lapps-logo.png" alt="Language Application Grid"/>
+				<p>Welcome to the LAPPS Galaxy instance running at Vassar College in Poughkeepsie, New York.</p>
+				<p>Through this Galaxy instance you can:</p>
+				<ol>
+					<li>Fetch documents from the MASC 3.0.0 or Gigaword sample sources.</li>
+					<li>Create processing pipelines with tools from:
+						<ol>
+							<li>GATE</li>
+							<li>Apache OpenNLP</li>
+							<li>Stanford NLP</li>
+						</ol>
+					</li> 
+				</ol>
+        	</div>
+        </div>
+        -->
+        <div class="jumbotron">
+        	<div class="container">
+				<h1>The Language Application Grid</h1>
+				<hr/>
+				<p>Welcome to the LAPPS Galaxy instance running at Vassar College in Poughkeepsie, New York.</p>
+				<p>Through this Galaxy instance you can:</p>
+				<ol>
+					<li>Fetch documents from the MASC 3.0.0 or Gigaword sample sources.</li>
+					<li>Create processing pipelines with tools from:
+						<ol>
+							<li>GATE</li>
+							<li>Apache OpenNLP</li>
+							<li>Stanford NLP</li>
+						</ol>
+					</li> 
+				</ol>
+        	</div>
+        </div>
+        <div class="panel panel-primary">
+        	<div class="panel-heading">
+        		<h1 class="panel-title">Simple Tutorial</h1>
+        		<p>If you have a good understanding of how Galaxy works you can run the
+        		following tools in order:</p>
+        		<ol>
+        			<li>Get data -> MASC</li>
+        			<li>From the GATE menu ->
+        				<ol>
+        					<li>Tokenizer</li>
+        					<li>Sentence Splitter</li>
+        					<li>Part of speech tagger</li>
+        				</ol>
+        			</li>
+        			<li>From the History panel select ->
+        				<ol>
+        					<li>Edit attributes</li>
+        					<li>Convert Format (there is only one converter, so just run it)</li>
+        				</ol>        				
+        			</li>
+        			<li>Tools -> Word Count</li>
+        			<li>Expand the output select the <em>Visualize</em> icon and then <em>Charts<em></li>
+        			<li>Click the <tt>Add Data</tt> and select <tt>Column: 1</tt>, <tt>Column: 2</tt>,
+        			and <tt>Column: 3</tt> respectively.</li>
+        			<li>Click the <tt>Draw</tt> button to marvel at the simple word count histogram ;-)</li>
+        		</ol>
+        	</div>
+        </div>
+        <div class="panel panel-warning">
+        	<div class="panel-heading">
+        		<h1 class="panel-title">Caveats</h1>
+        	</div>
+        	<div class="panel-body">
+				<p>While Galaxy ensures that the inputs to a processing tool use
+				the correct file format (GATE tools require GATE/XML, the other tools 
+				require LIF) it does not currently ensure the document contains the required
+				annotation types.  For example; part of speech taggers typically require
+				the input document to contain <tt>Token</tt> annotations.</p>
+				<p>Converters exist to convert between GATE/XML and LIF, however these
+				converters must be inserted manually into a workflow at the proper places,
+				say between the GATE Tokenizer and the Stanford POSTagger.</p>
+        	</div>
+        </div>
+        <br/>
+        <hr/>
+        <a target="_blank" class="reference" href="http://galaxyproject.org/">Galaxy</a> is an open, web-based platform for data intensive biomedical research.  The <a target="_blank" class="reference" href="http://wiki.galaxyproject.org/GalaxyTeam">Galaxy team</a> is a part of <a target="_blank" class="reference" href="http://www.bx.psu.edu">BX</a> at <a target="_blank" class="reference" href="http://www.psu.edu">Penn State</a>, and the <a target="_blank" class="reference" href="http://www.biology.emory.edu/">Biology</a> and <a target="_blank" class="reference" href="http://www.mathcs.emory.edu/">Mathematics and Computer Science</a> departments at <a target="_blank" class="reference" href="http://www.emory.edu/">Emory University</a>.  The <a target="_blank" class="reference" href="http://galaxyproject.org/">Galaxy Project</a> is supported in part by <a target="_blank" class="reference" href="http://www.genome.gov">NHGRI</a>, <a target="_blank" class="reference" href="http://www.nsf.gov">NSF</a>, <a target="_blank" class="reference" href="http://www.huck.psu.edu">The Huck Institutes of the Life Sciences</a>, <a target="_blank" class="reference" href="http://www.ics.psu.edu">The Institute for CyberScience at Penn State</a>, and <a target="_blank" class="reference" href="http://www.emory.edu/">Emory University</a>.</p>
+
+    </div>
+</body>
+</html>

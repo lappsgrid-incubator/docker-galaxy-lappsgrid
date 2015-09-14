@@ -1,0 +1,26 @@
+import static org.lappsgrid.discriminator.Discriminators.Uri
+import groovy.json.JsonOutput
+
+String source=args[0]
+String token=args[1]
+String key=args[2]
+String output=args[3]
+
+// The URL to the LDC's Gigaword DataSource.
+ldcUrl = "http://grid.ldc.upenn.edu:8080/doc_service/services/${source}"
+
+
+File logfile = new File("/tmp/galaxy.log")
+logfile.withWriter { log -> 
+    log.println "Source: ${source}"
+    log.println "Key: ${key}"
+    log.println "Output: ${output}"
+}
+
+
+// We are not accessing the service through the service manager so we do not
+// need a username or password.
+gigaword = new DataSourceClient(ldcUrl, null, null)
+gigaword.setToken(token)
+
+new File(output).text = gigaword.get(key)

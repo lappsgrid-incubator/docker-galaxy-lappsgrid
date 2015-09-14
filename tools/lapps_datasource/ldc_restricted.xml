@@ -1,0 +1,27 @@
+<tool id='ldc.restricted' name='LDC Get (Restricted)' version='1.0.0'>
+    <description>Retreive a single document from a LDC Datasource.</description>
+    <command interpreter='lsd'>ldc_restricted.lsd $token $key $source $output</command>
+    <inputs>
+        <param name="token" type="text" label="OAuth Token"/>
+        <param name="key" type="text" label="Document ID" value="NYT_ENG_19940701.0006"/>
+        <param name='source' type='select' label='Corpus'>
+            <option value="GWZHDataSource">GWZHDataSource</option>
+            <option value="GWENDataSource">GWENDataSource</option>
+            <option value="GWARDataSource">GWARDataSource</option>
+            <option value="GWESDataSource">GWESDataSource</option>
+            <option value="CallhomeArLexDataSource">CallhomeArLexDataSource</option>
+            <option value="CallhomeGeLexDataSource">CallhomeGeLexDataSource</option>
+            <option value="CallhomeEnPronlexDataSource">CallhomeEnPronlexDataSource</option>
+            <option value="CallhomeSpLexDataSource">CallhomeSpLexDataSource</option>
+            <option value="CallhomeJpLexDataSource">CallhomeJpLexDataSource</option>
+            <option value="CallhomeCnLexDataSource">CallhomeCnLexDataSource</option>
+            <option value="FairuzDataSource">FairuzDataSource</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name='output' format='lapps'/>
+    </outputs>
+    <help>
+        <p>TODO Explain how to <a href="https://grid.anc.org:9443/ldc-authorize">fetch an OAuth token</a>.</p>
+    </help>
+</tool>

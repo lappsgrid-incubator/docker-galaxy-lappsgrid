@@ -1,0 +1,16 @@
+<tool id='example.word.count' name='Word Count' version='2.0.0'>
+  <description>Counts the words in the input</description>
+  <command interpreter='lsd'>word_count.lsd $input $output</command>
+  <inputs>
+    <param name='input' type='data' format='lif' label='input' />
+  </inputs>
+  <outputs>
+    <data name='output' format='tabular' />
+  </outputs>
+  <help>Calculates the word counts in a document.
+  
+  At the moment this will only work on documents that have been run through the GATE
+  tokenizer and part of speech tagger as this tool requires Token annotations with the
+  tokenType feature set.
+  </help>
+</tool>

@@ -1,0 +1,29 @@
+import static org.lappsgrid.discriminator.Discriminators.Uri
+
+File input = new File(args[0])
+File output = new File(args[1])
+String condition = args[2] // "{ it -> it.metadata.contains['${Uri.TOKEN}'] }"
+boolean prettyPrint = args[3] as Boolean
+
+def shell = new GroovyShell()
+def test = shell.evaluate(condition)
+
+class DataContainer extends Data<Container> {}
+
+DataContainer data = Serializer.parse(input.text, DataContainer)
+Container container = data.payload
+Container copy = new Container()
+copy.text = container.text
+copy.language = container.language
+copy.metadata = container.metadata
+copy.views << container.views.findAll(test)
+
+data = new DataContainer(copy)
+if (prettyPrint) {
+	output.text = data.asPrettyJson()
+}
+else {
+	ouput.text = data.asJson()
+}
+
+

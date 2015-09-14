@@ -1,0 +1,19 @@
+import static org.lappsgrid.discriminator.Discriminators.Uri
+
+String source = args[0]
+//int start = args[1] as int
+//int end = args[2] as int
+File output = new File(args[1])
+
+String url = "http://grid.ldc.upenn.edu:8080/doc_service/services/$source"
+DataSource service = new DataSourceClient(url)
+//service.setToken(token)
+String json = service.execute(new ListRequest().asJson())
+Data data = Serializer.parse(json, Data)
+if (Uri.ERROR == data.discriminator) {
+    output.text = data.payload
+    return
+}
+List keys = data.payload
+output.text = keys[1..-1].join("\n")
+
