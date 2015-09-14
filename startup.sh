@@ -78,7 +78,7 @@ function start_supervisor {
     fi
 }
 
-service postgresql start
+#service postgresql start
 
 # Try to guess if we are running under --privileged mode
 if mount | grep "/proc/kcore"; then

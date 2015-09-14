@@ -1,7 +1,6 @@
 server = [
-	//url:'http://grid.anc.org:8080/service_manager/invoker',
 	//url: 'http://vassar.lappsgrid.org/invoker',
-	url: 'http://docker:8080/service_manager/invoker",
+	url: 'http://docker:8080/service_manager/invoker',
 
 	username:'tester',
 	password:'tester'

@@ -1,12 +1,11 @@
-# Lappsgrid Galaxy Flavour
+# Lappsgrid Galaxy Flavour that 
 #
-# Version 0.1
 
-FROM ksuderman/galaxy-stable:osx
+FROM bgruening/galaxy-stable
 
 MAINTAINER Keith Suderman, suderman@cs.vassar.edu
 
-ENV GALAXY_CONFIG_BRAND LAPPS
+ENV GALAXY_CONFIG_BRAND="LAPPS Docker"
 
 RUN apt-get update && apt-get install -y bash emacs24-nox
 
