@@ -1,10 +1,10 @@
 server = [
 	//url: 'http://vassar.lappsgrid.org/invoker',
-	url: 'http://docker:8080/service_manager/invoker',
+	url: 'http://vassar:8080/service_manager/invoker',
 
-	username:'tester',
-	password:'tester'
+	username:'operator',
+	password:'operator'
 ]
 masc = [
-	id:'docker:masc.text_2.0.0'
+	id:'vassar:masc.text_2.0.0'
 ]
