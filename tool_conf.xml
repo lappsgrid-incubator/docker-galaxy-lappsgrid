@@ -2,16 +2,15 @@
 <toolbox>
 	<section id="datasource" name="Get data">
 		<tool file="data_source/upload.xml"/>
-		<tool file="lapps_datasource/gigaword.xml"/>
 		<tool file="lapps_datasource/masc_fetch.xml"/> 
 		<tool file="lapps_datasource/masc_list.xml"/>
 		<tool file="lapps_datasource/masc_load.xml"/> 
+        <tool file="lapps_gigaword/list.xml"/>
+        <tool file="lapps_gigaword/get.xml"/>
 	</section>
-    <section id="ldc" name="Linguistic Data Consortium">
-        <tool file="lapps_datasource/ldc_list.xml"/>
-        <tool file="lapps_datasource/ldc_list_restricted.xml"/>
-        <tool file="lapps_datasource/ldc_demo.xml"/>
-        <tool file="lapps_datasource/ldc_restricted.xml"/>
+    <section id="ldc" name="English Gigaword">
+        <tool file="lapps_gigaword/list.xml"/>
+        <tool file="lapps_gigaword/get.xml"/>
     </section>
 	<section id="tokenizers" name="Tokenizers">
 		<tool file="lapps_stanford/vassar.tokenizer_2.0.0.xml"/>

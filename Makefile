@@ -1,5 +1,6 @@
 DOCKER=/usr/local/bin/docker
-IMAGE=ksuderman/galaxy-lappsgrid
+IMAGE=lappsgrid/galaxy
+TARFILE=galaxy-lappsgrid-cmu.tar
 
 help:
 	@echo "GOALS"
@@ -8,7 +9,7 @@ help:
 	@echo "    Builds Dockerfile"
 	@echo "cmu"
 	@echo "    Builds with services configured to call"
-	@echo "    http://docker:8080."
+	@echo "    http://vassar:8080."
 	@echo "run"
 	@echo "    Runs the $(IMAGE):cmu image"
 	@echo "push"
@@ -29,6 +30,14 @@ latest:
 #run-cmu:
 run:
 	$(DOCKER) run -d --name galaxy --link vassar -p 8000:80 -p 9002:9002 --privileged=true $(IMAGE):cmu
+	
+upload:
+	@echo "Saving container to a tar file."
+	$(DOCKER) save -o $(TARFILE) $(IMAGE):cmu
+	@echo "GZipping the tar file."
+	gzip $(TARFILE)
+	@echo "Uploading the gz file."
+	scp -P 22022 $(TARFILE).gz suderman@anc.org:/home/www/anc/downloads/docker
 	
 push:
 	$(DOCKER) push $(IMAGE)
