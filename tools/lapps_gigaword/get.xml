@@ -1,0 +1,10 @@
+<tool id='gigaword.get' name='Gigaword Get' version='1.0.0'>
+    <description>Retreive a single document from the Gigaword Datasource.</description>
+    <command interpreter='lsd'>get.lsd $key $output</command>
+    <inputs>
+        <param name="key" type="text" label="Document ID" value="NYT_ENG_19940701.0006"/>
+    </inputs>
+    <outputs>
+        <data name='output' format='ldc'/>
+    </outputs>
+</tool>
