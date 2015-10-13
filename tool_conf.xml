@@ -77,6 +77,7 @@
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 	</section>
+	<!--
 	<section id='opennlp.tools' name='Apache OpenNLP'>
 	  <tool file='lapps_opennlp/opennlp.tokenizer.xml' />
 	  <tool file='lapps_opennlp/opennlp.postagger.xml' />
@@ -87,26 +88,30 @@
 	<section id="kyoto.grid" name="Kyoto Node">
 		<tool file='lapps_kyoto/opennlp_postagger.xml'/>
 	</section>
-	<section id="lapps.tools" name="Evaluation">
+	-->
+	<section id="lapps.evaluation" name="Evaluation">
 		<tool file="lapps_common/pretty_print.xml"/>
 		<tool file="lapps_common/evaluation.xml"/>
 		<tool file="lapps_common/word_count.xml"/>
 		<tool file="lapps_common/compare_annotations.xml"/>
-		<tool file="lapps_common/oaqa_evaluation.xml"/>
-		<tool file="lapps_common/rename.xml"/>
-		<tool file="lapps_common/rename_features.xml"/>
-		<tool file="lapps_common/filter.xml"/>
+		<tool file="lapps_oaqa/oaqa_evaluation.xml"/>
 	</section>
 	<section id="converters" name="Converters">
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 		<tool file="lapps_converters/gigaword2lif.xml"/>
 	</section>
+	<section id="lapps.tools">
+		<tool file="lapps_common/rename.xml"/>
+		<tool file="lapps_common/rename_features.xml"/>
+		<tool file="lapps_common/filter.xml"/>
+	</section>
   <section id="plots" name="Graph/Display Data">
 		<tool file="lapps_common/pretty_print.xml"/>
     <tool file="plotting/bar_chart.xml" />
     <tool file="plotting/boxplot.xml" />
   </section>
+  <!--
   <section id="debugging" name="Debugging">
       <tool file="lapps_test/nerfix.xml"/>
       <tool file="lapps_test/nerAddLabel.xml"/>
@@ -119,4 +124,5 @@
       <tool file="lapps_test/transform.xml"/>
       <tool file="lapps_test/brat.xml"/>
   </section>
+  -->
 </toolbox>
