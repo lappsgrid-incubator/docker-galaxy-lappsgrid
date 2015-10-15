@@ -9,7 +9,7 @@ help:
 	@echo "    Builds Dockerfile"
 	@echo "cmu"
 	@echo "    Builds with services configured to call"
-	@echo "    http://vassar:8080."
+	@echo "    http://manager:8080."
 	@echo "run"
 	@echo "    Runs the $(IMAGE):cmu image"
 	@echo "push"
@@ -40,6 +40,6 @@ upload:
 	scp -P 22022 $(TARFILE).gz suderman@anc.org:/home/www/anc/downloads/docker
 	
 push:
-	$(DOCKER) push $(IMAGE)
+	$(DOCKER) push $(IMAGE):cmu
 
 

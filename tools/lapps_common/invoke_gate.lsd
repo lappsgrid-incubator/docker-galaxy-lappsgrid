@@ -2,7 +2,7 @@
 
 import static org.lappsgrid.discriminator.Discriminators.Uri
 
-String base = "http://vassar.lappsgrid.org/invoker/anc"
+String base = "http://manager:8080/invoker/vassar"
 //String base = "http://grid.anc.org:8080/service_manager/invoker/anc"
 
 String username = "tester"

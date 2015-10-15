@@ -1,7 +1,7 @@
 #!/usr/bin/env lsd
 
 //include 'Servers'
-String base = 'http://eldrad.cs-i.brandeis.edu:8080/service_manager/invoker/brandeis_eldrad_grid_1'
+String base = 'http://brandeis:8080/service_manager/invoker/brandeis_eldrad_grid_1'
 
 String service = args[0]
 String input = args[1]

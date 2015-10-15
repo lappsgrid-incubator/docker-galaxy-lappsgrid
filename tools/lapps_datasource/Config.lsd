@@ -1,6 +1,6 @@
 server = [
 	//url: 'http://vassar.lappsgrid.org/invoker',
-	url: 'http://vassar:8080/service_manager/invoker',
+	url: 'http://manager:8080/service_manager/invoker',
 
 	username:'operator',
 	password:'operator'

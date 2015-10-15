@@ -1,12 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <toolbox>
-	<section id="datasource" name="Get data">
+	<section id="datasource" name="MASC">
 		<tool file="data_source/upload.xml"/>
 		<tool file="lapps_datasource/masc_fetch.xml"/> 
 		<tool file="lapps_datasource/masc_list.xml"/>
 		<tool file="lapps_datasource/masc_load.xml"/> 
-        <tool file="lapps_gigaword/list.xml"/>
-        <tool file="lapps_gigaword/get.xml"/>
 	</section>
     <section id="ldc" name="English Gigaword">
         <tool file="lapps_gigaword/list.xml"/>
@@ -97,10 +95,13 @@
 		<tool file="lapps_oaqa/oaqa_evaluation.xml"/>
 	</section>
 	<section id="converters" name="Converters">
+	<!--
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 		<tool file="lapps_converters/gigaword2lif.xml"/>
+	-->
 	</section>
+	
 	<section id="lapps.tools">
 		<tool file="lapps_common/rename.xml"/>
 		<tool file="lapps_common/rename_features.xml"/>
