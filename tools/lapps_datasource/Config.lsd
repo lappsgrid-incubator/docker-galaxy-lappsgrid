@@ -1,9 +1,10 @@
 server = [
-	//url:'http://grid.anc.org:8080/service_manager/invoker',
-	url: 'http://vassar.lappsgrid.org/invoker',
-	username:'tester',
-	password:'tester'
+	//url: 'http://vassar.lappsgrid.org/invoker',
+	url: 'http://manager:8080/service_manager/invoker',
+
+	username:'operator',
+	password:'operator'
 ]
 masc = [
-	id:'anc:masc.text_2.0.0'
+	id:'vassar:masc.text_2.0.0'
 ]
