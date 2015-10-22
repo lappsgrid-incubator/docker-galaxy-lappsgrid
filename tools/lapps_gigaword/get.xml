@@ -2,7 +2,7 @@
     <description>Retreive a single document from the Gigaword Datasource.</description>
     <command interpreter='lsd'>get.lsd $key $output</command>
     <inputs>
-        <param name="key" type="text" label="Document ID" value="NYT_ENG_19940701.0006"/>
+        <param name="key" type="text" label="Document ID" value="NYT_ENG_20050622.0308"/>
     </inputs>
     <outputs>
         <data name='output' format='ldc'/>
