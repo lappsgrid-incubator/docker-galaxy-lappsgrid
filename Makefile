@@ -29,11 +29,11 @@ push:
 help:
 	@echo "GOALS"
 	@echo
-	@echo "latest"
-	@echo "    Builds Dockerfile"
 	@echo "cmu"
 	@echo "    Builds with services configured to call"
-	@echo "    http://manager:8080."
+	@echo "    Dockerized services (default goal)."
+	@echo "latest"
+	@echo "    Builds Dockerfile"
 	@echo "run"
 	@echo "    Runs the $(IMAGE):cmu image"
 	@echo "push"
