@@ -32,7 +32,9 @@ doc.TEXT.P.each { p ->
 
 container.text = buffer.toString()
 container.language = "en"
-output.text = Serializer.toPrettyJson(container)
+data = new DataContainer(Uri.LAPPS, container)
+output.text = data.asPrettyJson()
+
 
 
 
