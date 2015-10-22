@@ -2,22 +2,6 @@ DOCKER=/usr/local/bin/docker
 IMAGE=lappsgrid/galaxy
 TARFILE=galaxy-lappsgrid-cmu.tar
 
-help:
-	@echo "GOALS"
-	@echo
-	@echo "latest"
-	@echo "    Builds Dockerfile"
-	@echo "cmu"
-	@echo "    Builds with services configured to call"
-	@echo "    http://manager:8080."
-	@echo "run"
-	@echo "    Runs the $(IMAGE):cmu image"
-	@echo "push"
-	@echo "    Pushes $(IMAGE) to the Docker Hub."
-	@echo "help"
-	@echo "    Prints these usage instructions."
-	@echo
-	
 cmu:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE):cmu .
 
@@ -42,4 +26,20 @@ upload:
 push:
 	$(DOCKER) push $(IMAGE):cmu
 
+help:
+	@echo "GOALS"
+	@echo
+	@echo "latest"
+	@echo "    Builds Dockerfile"
+	@echo "cmu"
+	@echo "    Builds with services configured to call"
+	@echo "    http://manager:8080."
+	@echo "run"
+	@echo "    Runs the $(IMAGE):cmu image"
+	@echo "push"
+	@echo "    Pushes $(IMAGE) to the Docker Hub."
+	@echo "help"
+	@echo "    Prints these usage instructions."
+	@echo
+	
 
