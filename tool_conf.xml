@@ -97,14 +97,18 @@
 		<tool file="lapps_common/compare_annotations.xml"/>
 		<tool file="lapps_oaqa/oaqa_evaluation.xml"/>
 	</section>
-	<section id="converters" name="Converters">
+	<section id="converters" name="Datatype Converters">
 	<!--
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 		<tool file="lapps_converters/gigaword2lif.xml"/>
 	-->
 	</section>
-	
+	<section id="my.converters" name="Manual Conversion">
+		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
+		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
+		<tool file="lapps_converters/gigaword2lif.xml"/>
+	</section>
 	<section id="lapps.tools">
 		<tool file="lapps_common/rename.xml"/>
 		<tool file="lapps_common/rename_features.xml"/>

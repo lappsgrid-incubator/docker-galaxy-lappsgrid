@@ -26,7 +26,7 @@ doc.TEXT.P.each { p ->
 	buffer.append(p.value()[0])
 	a.end = buffer.length()
 	buffer.append("\n")
-	a.type = "http://vocab.lappsgrid.org/Paragraph"
+	a.atType = "http://vocab.lappsgrid.org/Paragraph"
 	a.label = "Paragraph"
 }
 
