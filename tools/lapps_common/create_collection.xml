@@ -18,7 +18,7 @@
       <param name="end" type="integer" value="392" max="392"/>
   </inputs>
   <outputs>
-    <collection name="list_output" type="list" label="Output List" format="txt">
+    <collection name="list_output" type="list" label="Output List" format="lif">
         <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
     </collection>
   </outputs>

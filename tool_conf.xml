@@ -5,10 +5,13 @@
 		<tool file="lapps_datasource/masc_fetch.xml"/> 
 		<tool file="lapps_datasource/masc_list.xml"/>
 		<tool file="lapps_datasource/masc_load.xml"/> 
+        <tool file="lapps_common/create_collection.xml"/>
 	</section>
     <section id="ldc" name="English Gigaword">
         <tool file="lapps_gigaword/list.xml"/>
         <tool file="lapps_gigaword/get.xml"/>
+		<tool file="lapps_gigaword/load.xml"/> 
+        <tool file="lapps_gigaword/create_collection.xml"/>
     </section>
 	<section id="tokenizers" name="Tokenizers">
 		<tool file="lapps_stanford/vassar.tokenizer_2.0.0.xml"/>
@@ -75,7 +78,6 @@
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 	</section>
-	<!--
 	<section id='opennlp.tools' name='Apache OpenNLP'>
 	  <tool file='lapps_opennlp/opennlp.tokenizer.xml' />
 	  <tool file='lapps_opennlp/opennlp.postagger.xml' />
@@ -83,6 +85,7 @@
 	  <tool file='lapps_opennlp/opennlp.namedentityrecognizer.xml' />
 	  <tool file='lapps_opennlp/opennlp.parser.xml' />
 	</section>	
+	<!--
 	<section id="kyoto.grid" name="Kyoto Node">
 		<tool file='lapps_kyoto/opennlp_postagger.xml'/>
 	</section>
@@ -118,7 +121,6 @@
       <tool file="lapps_test/nerAddLabel.xml"/>
       <tool file="lapps_test/consolidate.xml"/>
       <tool file="lapps_datasource/html_source.xml"/>
-      <tool file="lapps_common/create_collection.xml"/>
       <tool file="lapps_test/tokenizer.xml"/>
       <tool file="lapps_test/tagger.xml"/>
       <tool file="lapps_test/ner.xml"/>

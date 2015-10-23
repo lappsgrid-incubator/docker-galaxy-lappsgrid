@@ -10,7 +10,7 @@ if (!dir.exists()) {
     }
 }
 
-DataSourceClient datasource = new DataSourceClient("http://manager:8080/service_manager/invoker/vassar:masc.text_2.0.0", "operator", "operator")
+DataSourceClient datasource = new DataSourceClient("http://gigaword:8080/GigawordDataSource/services/GigawordDataSource")
 
 String[] lines = input.readLines()
 lines[start..end].each { line ->
