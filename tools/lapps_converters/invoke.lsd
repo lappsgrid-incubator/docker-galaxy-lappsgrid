@@ -6,10 +6,10 @@ String service = args[0]
 String input = args[1]
 boolean prettyPrint = args[2] as Boolean
 String output = args[3]
-String username = args[3] ?: server.username ?: "tester"
-String password = args[4] ?: server.password ?: "tester"
+String username = args[4] ?: server.username ?: "operator"
+String password = args[5] ?: server.password ?: "operator"
 
-String url = server.url //"http://docker:8080/service_manager/invoker/docker:${service}"
+String url = "${server.url}/vassar:${service} //"http://docker:8080/service_manager/invoker/docker:${service}"
 ServiceClient client = new ServiceClient(url, username, password)
 String json = new File(input).text
 new File(output).text = client.execute(json)

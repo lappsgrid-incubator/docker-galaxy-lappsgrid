@@ -5,6 +5,9 @@ TARFILE=galaxy-lappsgrid-cmu.tar
 cmu:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE):cmu .
 
+no-cache:
+	$(DOCKER) build --no-cache -f Dockerfile.cmu -t $(IMAGE):cmu .
+
 latest:
 	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
 	

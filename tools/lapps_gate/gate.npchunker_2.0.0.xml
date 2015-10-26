@@ -3,12 +3,10 @@
 		GATE Noun Phrase Chunker
 	</description>
 	<command interpreter="lsd">
-		invoke.lsd gate.npchunker_2.0.0 $input $output $username $password
+		invoke.lsd gate.npchunker_2.0.0 $input $output
 	</command>
 	<inputs>
 		<param name="input" type="data" format="gate" label="input"/>
-		<param name="username" type="text" value="operator" label="Username"/>
-		<param name="password" type="text" value="operator" label="Password"/>
 	</inputs>
 	<outputs>
 		<data name="output" format="gate" label="Noun Chunks (GATE)"/>

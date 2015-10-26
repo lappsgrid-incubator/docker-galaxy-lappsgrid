@@ -1,0 +1,24 @@
+<tool id="masc.query.collection" name="Query Data Collection" version="1.0.0">
+  <command interpreter="lsd">query_collection.lsd $query $start $end</command>
+  <inputs>
+  <!--
+    <param name="input" type="data" format="txt" label="Index List" help="List of MASC document ID values." />
+  -->
+  	  <param name="query" type="text" label="Query"/>
+      <param name="start" type="integer" value="0" min="0"/>
+      <param name="end" type="integer" value="392" max="392"/>
+  </inputs>
+  <outputs>
+    <collection name="list_output" type="list" label="Output List" format="lif">
+        <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
+    </collection>
+  </outputs>
+  <tests>
+  </tests>
+  <help>
+  	<p>Performs a simple <em>String.contains(pattern)</em> test on the filename using
+	  the supplied query.  Result sets will be limited to 100 documents, although smaller
+	  sets can be selected by setting the <em>start</em> and <em>end</em> parameters
+	  accordingly</p>
+  </help>
+</tool>

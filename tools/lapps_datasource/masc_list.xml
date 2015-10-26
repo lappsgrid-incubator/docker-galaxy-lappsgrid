@@ -1,6 +1,6 @@
 <tool id="masc.list" name="List MASC" version="2.0.0">
   <description>Lists all keys in MASC.</description>
-  <command interpreter="lsd">list.lsd $token $output</command>
+  <command interpreter="lsd">masc_list.lsd $token $output</command>
   <inputs>
     <param name="token" type="text" label="OAuth Token" value="123abc"/>
   </inputs>

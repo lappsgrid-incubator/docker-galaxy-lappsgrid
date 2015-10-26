@@ -6,5 +6,5 @@ server = [
 	password:'operator'
 ]
 masc = [
-	id:'vassar:masc.text_2.0.0'
+	id:'vassar:masc.text_2.1.0'
 ]

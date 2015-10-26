@@ -3,12 +3,10 @@
 		ANNIE Tokeniser from GATE.
 	</description>
 	<command interpreter="lsd">
-		invoke.lsd gate.tokenizer_2.0.0 $input $output $username $password
+		invoke.lsd gate.tokenizer_2.0.0 $input $output
 	</command>
 	<inputs>
 		<param name="input" type="data" format="txt,gate,xml" label="input"/>
-		<param name="username" type="text" value="operator" label="Username"/>
-		<param name="password" type="text" value="operator" label="Password"/>
 	</inputs>
 	<outputs>
 		<data name="output" format="gate" label="Tokenized (GATE)"/>

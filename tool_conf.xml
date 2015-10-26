@@ -5,7 +5,8 @@
 		<tool file="lapps_datasource/masc_fetch.xml"/> 
 		<tool file="lapps_datasource/masc_list.xml"/>
 		<tool file="lapps_datasource/masc_load.xml"/> 
-        <tool file="lapps_common/create_collection.xml"/>
+        <tool file="lapps_datasource/create_collection.xml"/>
+        <tool file="lapps_datasource/query_collection.xml"/>
 	</section>
     <section id="ldc" name="English Gigaword">
         <tool file="lapps_gigaword/list.xml"/>
@@ -104,7 +105,7 @@
 		<tool file="lapps_converters/gigaword2lif.xml"/>
 	-->
 	</section>
-	<section id="my.converters" name="Manual Conversion">
+	<section id="local.converters" name="Manual Conversion">
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 		<tool file="lapps_converters/gigaword2lif.xml"/>

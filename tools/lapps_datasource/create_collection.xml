@@ -1,0 +1,21 @@
+<tool id="masc.create.collection" name="Create Data Collection" version="1.0.0">
+  <command interpreter="lsd">create_collection.lsd $start $end</command>
+  <inputs>
+  <!--
+    <param name="input" type="data" format="txt" label="Index List" help="List of MASC document ID values." />
+  -->
+      <param name="start" type="integer" value="0" min="0"/>
+      <param name="end" type="integer" value="392" max="392"/>
+  </inputs>
+  <outputs>
+    <collection name="list_output" type="list" label="Output List" format="lif">
+        <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
+    </collection>
+  </outputs>
+  <tests>
+  </tests>
+    <help>
+        <p>Creates a Data Collection with the selected range of documents.  Use the <em>Query Data Collection</em>
+        to create a Data Collection with documents of a specific genre.</p>
+    </help>
+</tool>
