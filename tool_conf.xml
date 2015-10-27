@@ -50,9 +50,12 @@
 		<tool file="lapps_gate/gate.coref_2.0.0.xml"/>
 	</section>
 	<section id="misc" name="Miscellaneous">
+		<!--
 		<tool file="lapps_datasource/masc_list.xml"/>
 		<tool file="lapps_gate/gate.gazetteer_2.0.0.xml"/>
 		<tool file="lapps_gate/gate.ortho_2.0.0.xml"/>
+		-->
+		<tool file="lapps_common/nerfix.xml"/>
 		<tool file="lapps_common/pretty_print.xml"/>
 	</section>	
 	<section id="stanford" name="Stanford NLP">
