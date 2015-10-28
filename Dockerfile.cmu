@@ -17,6 +17,7 @@ ENV TERM=xterm
 RUN apt-get update && apt-get install -y bash emacs24-nox
 
 ADD ./packages/lsd.tgz /usr/bin/
+ADD ./packages/brat.tgz /galaxy-central/config/plugins/visualizations
 RUN chmod a+x /usr/bin/lsd
 
 #ADD ./welcome.html /galaxy-central/static/welcome.html
