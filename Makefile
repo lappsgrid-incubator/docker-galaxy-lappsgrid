@@ -11,23 +11,11 @@ no-cache:
 latest:
 	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
 	
-#run:
-#	$(DOCKER) run -d -p 8000:80 -p 9002:9002 --privileged=true $(IMAGE)
-	
-#run-cmu:
-run:
-	$(DOCKER) run -d --name galaxy --link vassar -p 8000:80 -p 9002:9002 --privileged=true $(IMAGE):cmu
-	
-upload:
-	@echo "Saving container to a tar file."
-	$(DOCKER) save -o $(TARFILE) $(IMAGE):cmu
-	@echo "GZipping the tar file."
-	gzip $(TARFILE)
-	@echo "Uploading the gz file."
-	scp -P 22022 $(TARFILE).gz suderman@anc.org:/home/www/anc/downloads/docker
-	
 push:
 	$(DOCKER) push $(IMAGE):cmu
+
+tag:
+	if [ -n "$(TAG)" ] ; then $(DOCKER) tag $(IMAGE):cmu $(IMAGE):$(TAG) ; fi
 
 help:
 	@echo "GOALS"
@@ -37,10 +25,10 @@ help:
 	@echo "    Dockerized services (default goal)."
 	@echo "latest"
 	@echo "    Builds Dockerfile"
-	@echo "run"
-	@echo "    Runs the $(IMAGE):cmu image"
 	@echo "push"
-	@echo "    Pushes $(IMAGE) to the Docker Hub."
+	@echo "    Pushes $(IMAGE):cmu to the Docker Hub."
+	@echo "tag"
+	@echo "    Tags $(IMAGE):cmu on the Docker Hub."
 	@echo "help"
 	@echo "    Prints these usage instructions."
 	@echo
