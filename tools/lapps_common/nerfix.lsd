@@ -15,6 +15,11 @@ Container container = data.payload
 View view = container.views[-1]
 View newView = container.newView()
 int id = -1;
+
+
+newView.metadata.contains = [:]
+newView.metadata.contains[Uri.NE] = getContains(view)
+
 println "Adding annotations to the new view."
 
 view.annotations.each { Annotation a ->
@@ -30,8 +35,28 @@ view.annotations.each { Annotation a ->
 }
 
 data = new DataContainer(container)
-output.text = data.asJson()
+output.text = data.asPrettyJson()
 return
+
+Map getContains(View view) {
+	Map contains = view.metadata.contains ?: [:]
+	if (contains[Uri.NE]) {
+		return contains[Uri.NE]
+	}
+	if (contains[Uri.PERSON]) {
+		return contains[Uri.PERSON]
+	}
+	if (contains[Uri.DATE]) {
+		return contains[Uri.DATE]
+	}
+	if (contains[Uri.LOCATION]) {
+		return contains[Uri.LOCATION]
+	}
+	if (contains[Uri.ORGANZIATION]) {
+		return contains[Uri.ORGANIZATION]
+	}
+	return [producer: "Unknown", type:"ner:unknown"]
+}
 
 String isNamedEntity(Annotation a) {
     String type = a.atType

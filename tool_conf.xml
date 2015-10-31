@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <toolbox>
-	<section id="datasource" name="MASC">
+	<section id="get.data" name="Local Data">
 		<tool file="data_source/upload.xml"/>
+	</section>
+	<section id="datasource" name="MASC">
 		<tool file="lapps_datasource/masc_fetch.xml"/> 
 		<tool file="lapps_datasource/masc_list.xml"/>
 		<!-- <tool file="lapps_datasource/masc_load.xml"/>  -->
@@ -41,6 +43,8 @@
 	<section id="parsers" name="Parsers">
 		<tool file='lapps_stanford/brandeis.parser.xml' />
 		<tool file='lapps_opennlp/opennlp.parser.xml' />
+		<tool file='lapps_stanford/brandeis.parser.xml' />
+		<tool file='lapps_stanford/brandeis.dependencyparser.xml' />
 	</section>
 	<section id="chunkers" name="Chunkers">
 		<tool file="lapps_gate/gate.npchunker_2.0.0.xml"/>
@@ -68,6 +72,7 @@
 		<tool file='lapps_stanford/brandeis.postagger.xml' />
 		<tool file='lapps_stanford/brandeis.namedentityrecognizer.xml' />
 		<tool file='lapps_stanford/brandeis.parser.xml' />
+		<tool file='lapps_stanford/brandeis.dependencyparser.xml' />
 	</section>
 	<section id="gate" name="GATE">
 		<tool file="lapps_gate/gate.tokenizer_2.0.0.xml"/>
@@ -79,8 +84,10 @@
 		<tool file="lapps_gate/gate.coref_2.0.0.xml"/>
 		<tool file="lapps_gate/gate.ortho_2.0.0.xml"/>
 		<tool file="lapps_gate/gate.gazetteer_2.0.0.xml"/>
+		<!--
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
+		-->
 	</section>
 	<section id='opennlp.tools' name='Apache OpenNLP'>
 	  <tool file='lapps_opennlp/opennlp.tokenizer.xml' />
@@ -108,11 +115,13 @@
 		<tool file="lapps_converters/gigaword2lif.xml"/>
 	-->
 	</section>
+	<!--
 	<section id="local.converters" name="Manual Conversion">
 		<tool file="lapps_converters/convert.gate2json_2.0.0.xml"/>
 		<tool file="lapps_converters/convert.json2gate_2.0.0.xml"/>
 		<tool file="lapps_converters/gigaword2lif.xml"/>
 	</section>
+	-->
 	<section id="lapps.tools">
 		<tool file="lapps_common/rename.xml"/>
 		<tool file="lapps_common/rename_features.xml"/>

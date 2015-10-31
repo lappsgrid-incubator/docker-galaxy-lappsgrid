@@ -46,8 +46,8 @@ config.testAnnotationProducer = testProducer
 config.testAnnotationFeature = testFeature
 
 container.metadata['evaluation-configuration'] = config
-
-def eval = new ServiceClient("http://oaqa:8080/services/EvaluationServices", null, null)
+String url = "http://evaluation:8080/EvaluationServices/services/AnnotationEvaluator"
+def eval = new ServiceClient(url, null, null)
 
 DataContainer data = new DataContainer()
 data.discriminator = Uri.LAPPS

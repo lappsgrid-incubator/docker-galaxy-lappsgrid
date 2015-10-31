@@ -1,7 +1,7 @@
 # Since the .tgz packages are not kept in source control this script can be used
 # to download the packages.
 
-PACKAGE_LIST=lsd
+PACKAGE_LIST="lsd brat"
 
 if [ ! -d packages ] ; then
 	mkdir packages
