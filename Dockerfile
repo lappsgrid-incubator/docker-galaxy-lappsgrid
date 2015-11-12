@@ -2,22 +2,31 @@
 #
 # Version 0.1
 
-FROM ksuderman/galaxy-stable:osx
+#FROM ksuderman/galaxy-stable:osx
+FROM bgruening/galaxy-stable
 
 MAINTAINER Keith Suderman, suderman@cs.vassar.edu
 
 ENV GALAXY_CONFIG_BRAND LAPPS
 
-RUN apt-get update && apt-get install -y bash emacs24-nox
+RUN apt-get update && apt-get install -y bash emacs24-nox git
 
 ADD ./lsd-2.2.1-SNAPSHOT.jar /usr/bin/lsd.jar
 ADD ./lsd /usr/bin/lsd
 RUN chmod a+x /usr/bin/lsd
 
+RUN mkdir /galaxy-central && \
+	chown galaxy:galaxy /galaxy-central
+	
+USER galaxy
+RUN git clone https://github.com/lappsgrid-incubator/Galaxy.git /galaxy-central && \
+	cd /galaxy-central && \
+	git checkout lappsnew
+
 #ADD ./welcome.html /galaxy-central/static/welcome.html
-ADD ./welcome.html /galaxy-central/web/welcome.html
-ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
-COPY ./tools /galaxy-central/tools
+#ADD ./welcome.html /galaxy-central/web/welcome.html
+#ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
+#COPY ./tools /galaxy-central/tools
  
 WORKDIR /galaxy-central
 
