@@ -1,6 +1,6 @@
 <tool id='stanfordnlp.parser' name='Stanford Parser' version='2.0.0'>
   <description>Stanford Parser (Brandeis)</description>
-  <command interpreter='lsd'>../lapps_common/invoke_brandeis.lsd stanfordnlp.parser $input $output</command>
+  <command interpreter='lsd'>../lapps_common/invoke_brandeis.lsd stanfordnlp.parser_2.0.1 $input $output</command>
   <inputs>
     <param name='input' type='data' format='lif' label='input' />
   </inputs>

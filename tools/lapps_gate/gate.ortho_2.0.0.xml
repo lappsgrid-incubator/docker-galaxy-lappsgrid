@@ -3,12 +3,10 @@
 		GATE OrthoMatcher
 	</description>
 	<command interpreter="lsd">
-		invoke.lsd gate.ortho_2.0.0 $input $username $password $output
+		invoke.lsd gate.ortho_2.0.0 $input $output
 	</command>
 	<inputs>
 		<param name="input" type="data" format="gate" label="input"/>
-		<param name="username" type="text" value="tester" label="Username"/>
-		<param name="password" type="text" value="tester" label="Password"/>
 	</inputs>
 	<outputs>
 		<data name="output" format="gate"/>

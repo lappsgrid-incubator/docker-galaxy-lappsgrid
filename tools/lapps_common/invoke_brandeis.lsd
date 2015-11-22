@@ -1,7 +1,7 @@
 #!/usr/bin/env lsd
 
 //include 'Servers'
-String base = 'http://eldrad.cs-i.brandeis.edu:8080/service_manager/invoker/brandeis_eldrad_grid_1'
+//String base = 'http://manager:8080/service_manager/invoker/vassar'
 
 String service = args[0]
 String input = args[1]
@@ -9,8 +9,8 @@ String output = args[2]
 String username = args[3] ?: 'tester'
 String password = args[4] ?: 'tester'
 
-//String url = "http://eldrad.cs-i.brandeis.edu:8080/service_manager/invoker/brandeis_eldrad_grid_1:${service}"
-String url = "${base}:${service}"
+String url = "http://eldrad.cs-i.brandeis.edu:8080/service_manager/invoker/brandeis_eldrad_grid_1:${service}"
+//String url = "${base}:${service}"
 ServiceClient client = new ServiceClient(url, username, password)
 String json = new File(input).text
 new File(output).text = client.execute(json)

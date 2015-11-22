@@ -7,7 +7,7 @@ File output = new File(args[1])
 
 Data data = Serializer.parse(file.text, Data)
 
-//TODO Check that the discriminator is XML
+//TODO Check that the discriminator is LDC/XML
 // Parse the payload into an XML document object (NodeList)
 def doc = new XmlParser().parseText(data.payload)
 
@@ -26,13 +26,15 @@ doc.TEXT.P.each { p ->
 	buffer.append(p.value()[0])
 	a.end = buffer.length()
 	buffer.append("\n")
-	a.type = "http://vocab.lappsgrid.org/Paragraph"
+	a.atType = "http://vocab.lappsgrid.org/Paragraph"
 	a.label = "Paragraph"
 }
 
 container.text = buffer.toString()
 container.language = "en"
-output.text = Serializer.toPrettyJson(container)
+data = new DataContainer(Uri.LAPPS, container)
+output.text = data.asPrettyJson()
+
 
 
 

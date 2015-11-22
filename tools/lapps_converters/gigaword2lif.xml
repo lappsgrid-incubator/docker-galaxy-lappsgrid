@@ -1,4 +1,4 @@
-<tool id='convert.gigaword2xml' name='Gigaword/XML to LIF' version='2.0.0'>
+<tool id='local.convert.gigaword2xml' name='Gigaword/XML to LIF' version='2.0.0'>
   <description>Converts the Gigaword/XML format to the LIF.</description>
   <command interpreter='lsd'>../lapps_converters/gigaword2lif.lsd $input $output</command>
   <inputs>

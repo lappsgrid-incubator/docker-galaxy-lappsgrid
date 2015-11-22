@@ -1,4 +1,4 @@
-<tool id='convert.gate2json_2.0.0' name='GateToJson v2.0.0' version='2.0.0'>
+<tool id='local.convert.gate2json_2.0.0' name='GateToLif v2.0.0' version='2.0.1'>
   <description>Converts GATE documents to the LAPPS JSON/LD format.</description>
     <!--
   <command interpreter='lsd'>../lapps_common/invoke_vassar.lsd convert.gate2json_2.0.0 $input $pretty $output</command>

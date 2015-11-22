@@ -4,25 +4,18 @@ int end = args[2] as int
 
 dir = new File("outputs")
 
-logfile = new File("/tmp/collection.log")
-
-void log(String message) {
-    logfile.withWriterAppend { it.println message }
-}
-
 if (!dir.exists()) {
     if (!dir.mkdirs()) {
-        //log("ERROR: Unable to create ${dir.path}")
         throw new IOException("Unable to create directory ${dir.path}")
     }
 }
+
+DataSourceClient datasource = new DataSourceClient("http://manager:8080/service_manager/invoker/vassar:masc.text_2.0.0", "operator", "operator")
 
 String[] lines = input.readLines()
 lines[start..end].each { line ->
     String id = line.trim()
     File file = new File(dir, "${id}.txt")
-    //log("Created file ${file.path}")
-    file.text = id
+    file.text = datasource.get(id)
 }
-log("Done.")
 

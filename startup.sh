@@ -6,6 +6,6 @@ until pg_isready &>/dev/null ; do
 	sleep 2
 done
 
-cd /galaxy-central/
+cd /home/galaxy
 ./run.sh
 
