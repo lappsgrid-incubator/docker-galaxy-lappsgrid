@@ -1,0 +1,68 @@
+# Lappsgrid Galaxy Flavour
+#
+# Version 0.1
+
+#FROM ksuderman/galaxy-stable:osx
+#FROM bgruening/galaxy-stable
+FROM lappsgrid/ubuntu:postgres
+
+MAINTAINER Keith Suderman, suderman@cs.vassar.edu
+
+ENV GALAXY_CONFIG_BRAND LAPPS
+
+RUN apt-get update && apt-get install -y bash emacs24-nox git
+
+#ADD ./lsd-2.2.1-SNAPSHOT.jar /usr/bin/lsd.jar
+#ADD ./lsd /usr/bin/lsd
+ADD ./packages/lsd.tgz /usr/bin
+RUN chmod a+x /usr/bin/lsd
+
+RUN groupadd -r galaxy -g 1450 && \
+	adduser --system --home /home/galaxy --shell /bin/bash --disabled-login --gecos "" --uid 1450 --gid 1450 galaxy
+	
+#RUN mkdir /galaxy-central && \
+#	chown galaxy:galaxy /galaxy-central
+	
+#ADD ./welcome.html /galaxy-central/static/welcome.html
+#ADD ./welcome.html /galaxy-central/web/welcome.html
+#ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
+#COPY ./tools /galaxy-central/tools
+ADD ./startup.sh /usr/bin/startup
+
+
+RUN service postgresql start && \
+	until pg_isready ; do echo "Waiting..." ; sleep 2; done && \
+    sudo -u postgres createuser -S -D -R galaxy && \
+    sudo -u postgres psql --command "ALTER USER galaxy WITH PASSWORD 'galaxy'" && \
+    sudo -u postgres createdb galaxy -O galaxy 
+
+#    createdb galaxy -O galaxy -E "UTF-8" && \
+ 
+USER galaxy
+RUN git clone https://github.com/lappsgrid-incubator/Galaxy.git /home/galaxy && \
+	cd /home/galaxy && \
+	git checkout lappsnew
+
+USER root
+WORKDIR /home/galaxy
+
+#RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+#RUN install-repository \
+#    "--url https://testtoolshed.g2.bx.psu.edu/ -o ksuderman --name lapps_gate_2_0_0 --panel-section-name Gate" \
+#    "--url https://testtoolshed.g2.bx.psu.edu/ -o ksuderman --name masc_2_0_0 --panel-section-name Masc" \
+#    "--url https://testtoolshed.g2.bx.psu.edu/ -o ksuderman --name lapps_stanford_2_0_0 --panel-section-name Stanford" 
+
+# Mark folders as imported from the host.
+VOLUME ["/export/", "/data/", "/var/lib/docker"]
+
+# Expose port 80 (webserver), 21 (FTP server), 8800 (Proxy)
+EXPOSE :80
+EXPOSE :21
+EXPOSE :22
+EXPOSE :8000
+EXPOSE :8800
+EXPOSE :9002
+
+# Autostart script that is invoked during container start
+CMD ["/usr/bin/startup"]    
+    

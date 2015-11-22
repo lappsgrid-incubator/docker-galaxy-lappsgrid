@@ -1,0 +1,62 @@
+<tool id="masc.query.collection" name="Query Data Collection" version="1.0.0">
+  <command interpreter="lsd">query_collection.lsd $query $start $end</command>
+    <description>Create a data collection from documents that match the query.</description>
+  <inputs>
+  <!--
+    <param name="input" type="data" format="txt" label="Index List" help="List of MASC document ID values." />
+  -->
+  	  <param name="query" type="text" label="Query"/>
+      <param name="start" type="integer" value="0" min="0"/>
+      <param name="end" type="integer" value="392" max="392"/>
+  </inputs>
+  <outputs>
+    <collection name="list_output" type="list" label="Output List" format="lif">
+        <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
+    </collection>
+  </outputs>
+  <tests>
+  </tests>
+  <help><![CDATA[
+Performs a simple *String.contains(pattern)* test on the filename using
+the supplied query.  Result sets will be limited to 100 documents, although smaller
+sets can be selected by setting the *start* and *end* parameters
+accordingly.
+
+The following terms may be used as search queries:
+
+1. data
+2. spoken
+3. court-transcript
+4. debate-transcript
+5. face-to-face
+6. telephone
+7. written
+8. blog
+9. email
+10. enron
+11. spam
+12. w3c
+13. essays
+14. ficlets
+15. fiction
+16. govt-docs
+17. jokes
+18. journal
+19. letters
+20. philanthropic-fundraising
+21. solicitation-brochures
+22. movie-script
+23. newspaper
+24. nyt
+25. unknown
+26. wsj
+27. non-fiction
+28. technical
+29. travel-guides
+30. twitter
+
+'''NOTE''' Queries **do not** support wildcards.
+
+]]>
+  </help>
+</tool>

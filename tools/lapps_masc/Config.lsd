@@ -1,0 +1,10 @@
+server = [
+	url: 'http://vassar.lappsgrid.org/invoker',
+	//url: 'http://manager:8080/service_manager/invoker',
+
+	username:'tester',
+	password:'tester'
+]
+masc = [
+	id:'anc:masc.text_2.1.0'
+]

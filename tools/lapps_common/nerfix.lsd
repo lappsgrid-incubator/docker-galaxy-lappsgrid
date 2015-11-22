@@ -1,0 +1,91 @@
+import static org.lappsgrid.discriminator.Discriminators.Uri
+
+File input = new File(args[0])
+File output = new File(args[1])
+
+String json = input.text
+DataContainer data = Serializer.parse(json, DataContainer)
+if (data.discriminator == Uri.ERROR) {
+    output.text = json
+    return
+}
+
+//println "Creating the container"
+Container container = data.payload
+View view = container.views[-1]
+View newView = container.newView()
+int id = -1;
+
+
+newView.metadata.contains = [:]
+newView.metadata.contains[Uri.NE] = getContains(view)
+
+//println "Adding annotations to the new view."
+
+view.annotations.each { Annotation a ->
+    String type = isNamedEntity(a)
+    if (type) {
+        Annotation newA = newView.newAnnotation();
+        newA.id = "ner" + (++id)
+        newA.atType = Uri.NE
+        newA.features.category = type
+        newA.start = a.start
+        newA.end = a.end
+    }
+}
+
+data = new DataContainer(container)
+output.text = data.asPrettyJson()
+return
+
+Map getContains(View view) {
+	Map contains = view.metadata.contains ?: [:]
+	if (contains[Uri.NE]) {
+		return contains[Uri.NE]
+	}
+	if (contains[Uri.PERSON]) {
+		return contains[Uri.PERSON]
+	}
+	if (contains[Uri.DATE]) {
+		return contains[Uri.DATE]
+	}
+	if (contains[Uri.LOCATION]) {
+		return contains[Uri.LOCATION]
+	}
+	if (contains[Uri.ORGANZIATION]) {
+		return contains[Uri.ORGANIZATION]
+	}
+	return [producer: "Unknown", type:"ner:unknown"]
+}
+
+String isNamedEntity(Annotation a) {
+    String type = a.atType
+    switch (type) {
+        case Uri.PERSON:
+        case Uri.LOCATION:
+        case Uri.ORGANIZATION:
+        case Uri.DATE:
+        	return type
+        	break
+    }
+    return null
+}
+
+String old_isNamedEntity(Annotation a) {
+    String result = null
+    switch (a.atTtype) {
+        case Uri.PERSON:
+            result = "Person"
+            break
+        case Uri.LOCATION:
+            result = "Location"
+            break;
+        case Uri.ORGANIZATION:
+            result = "Organization"
+            break
+        case Uri.DATE:
+            result = "Date"
+            break
+    }
+    return result
+}

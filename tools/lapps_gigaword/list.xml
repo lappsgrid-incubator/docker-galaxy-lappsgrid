@@ -1,0 +1,34 @@
+<tool id='gigaword.list' name='List' version='1.0.0'>
+    <description>Obtain a list of document ID values available from the Gigaword Datasource.</description>
+    <command interpreter='lsd'>list.lsd $token $start $end $service $output</command>
+    <inputs>
+        <param name="token" type="text" label="OAuth Token"/>
+        <param name="start" type="text" label="Start" value="0"/>
+        <param name="end" type="text" label="End" value="99"/>
+        <param name="service" type="select" label="Language">
+            <option value="GWENDataSource">English</option>
+            <option value="GWZHDataSource">Chinese</option>
+            <option value="GWESDataSource">Spanish</option>
+            <option value="GWARDataSource">Arabic</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name='output' format='txt'/>
+    </outputs>
+    <help><![CDATA[
+
+Fetches a list of document ID values from Gigaword.
+
+.. class:: infomark
+
+To obtain documents from Gigaword you **must**:
+
+1. Be an LDC member
+2. `Obtain an OAuth Token <https://grid.anc.org:9443/ldc-authorize/>`_
+
+To obtain an OAuth token visit the link above and log in with your LDC id and password. Then paste
+the OAuth token into the above field.
+
+]]>
+    </help>
+</tool>

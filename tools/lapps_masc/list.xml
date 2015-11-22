@@ -1,0 +1,16 @@
+<tool id="masc.list" name="List" version="2.0.0">
+  <description>Lists all keys in MASC.</description>
+  <command interpreter="lsd">list.lsd $output</command>
+  <outputs>
+    <data name="output" format="txt"/>
+  </outputs>
+  <!--
+  <tests>
+    <test>
+      <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+      <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+    </test>
+  </tests>
+  -->
+  <help>Obtains a list of ID values for all documents in MASC.</help>
+</tool>
