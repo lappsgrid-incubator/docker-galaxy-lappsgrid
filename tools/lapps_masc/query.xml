@@ -1,0 +1,61 @@
+<tool id="masc.query" name="Query" version="1.0.0">
+  <description>Lists all keys that match the query.</description>
+  <command interpreter="lsd">query.lsd $query $type $output</command>
+    <inputs>
+        <param name="query" type="text" label="Query"/>
+      <param name="type" type="select">
+          <option value="anc:masc.text_2.2.0">Text</option>
+          <option value="anc:masc.lif_2.2.0">LIF</option>
+          <option value="anc:masc.json_2.2.0">Gold Annotations</option>
+      </param>
+    </inputs>
+  <outputs>
+    <data name="output" format="txt"/>
+  </outputs>
+  <!--
+  <tests>
+    <test>
+      <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+      <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+    </test>
+  </tests>
+  -->
+  <help>Obtains a list of ID values for documents in MASC that match the specified query.
+
+Only simple queries based on simple path matching is available at the moment. The following terms may be used:
+
+1. data
+2. spoken
+3. court-transcript
+4. debate-transcript
+5. face-to-face
+6. telephone
+7. written
+8. blog
+9. email
+10. enron
+11. spam
+12. w3c
+13. essays
+14. ficlets
+15. fiction
+16. govt-docs
+17. jokes
+18. journal
+19. letters
+20. philanthropic-fundraising
+21. solicitation-brochures
+22. movie-script
+23. newspaper
+24. nyt
+25. unknown
+26. wsj
+27. non-fiction
+28. technical
+29. travel-guides
+30. twitter
+
+Queries do **not** support wildcards.
+
+  </help>
+</tool>

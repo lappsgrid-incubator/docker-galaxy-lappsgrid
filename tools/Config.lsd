@@ -1,0 +1,7 @@
+servers = [
+	oaqa: "http://evaluation:8080/EvaluationServices/services/AnnotationEvaluator"
+		//url = "http://gold.lti.cs.cmu.edu:4040/evaluation/services/AnnotationEvaluator"
+	manager: 'http://manager:8080/service_manager/invoker/lapps',
+	gigaword: "http://gigaword:8080/GigawordDataSource/services/GigawordDataSource"
+]
+

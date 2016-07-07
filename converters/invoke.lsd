@@ -1,0 +1,14 @@
+#!/usr/bin/env lsd
+
+String service = args[0]
+String input = args[1]
+String output = args[2]
+String username = args[3] ?: "tester"
+String password = args[4] ?: "tester"
+
+println "Invoking ${service} to perform conversion."
+String url = "http://grid.anc.org:8080/service_manager/invoker/anc:${service}"
+//String url = "http://galaxy.lappsgrid.org/invoker/anc:${service}"
+ServiceClient client = new ServiceClient(url, username, password)
+String json = new File(input).text
+new File(output).text = client.execute(json)

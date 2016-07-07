@@ -1,0 +1,18 @@
+<tool id="wrap.text" name="Wrap data" version="1.0.0">
+    <description>in a LIF container.</description>
+    <command interpreter="lsd">wrap.lsd $format $input $output</command>
+    <inputs>
+        <param name="input" type="data" format="txt"/>
+        <param name="format" type="select" label="LIF Format">
+            <option value="txt">Plain Text (UTF-8)</option>
+            <option value="ldc">Gigaword/XML</option>
+            <option value="gate">Gate/XML</option>
+            <option value="xml">Generic XML</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name="output" format="lif" label="Output"/>
+    </outputs>
+    <help>Any text files uploaded will typically need to be wrapped in a LIF container before
+        they can be using in a LAPPS processing pipeline.</help>
+</tool>
