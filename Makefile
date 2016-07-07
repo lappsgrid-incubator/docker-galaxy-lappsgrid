@@ -1,6 +1,10 @@
 DOCKER=/usr/local/bin/docker
-IMAGE=lappsgrid/galaxy
+IMAGE=lappsgrid/galaxy-discovery
 TARFILE=galaxy-lappsgrid-cmu.tar
+TAG=discovery
+
+discovery:
+	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE) .
 
 cmu:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE):cmu .
@@ -12,7 +16,7 @@ latest:
 	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
 	
 push:
-	$(DOCKER) push $(IMAGE):cmu
+	$(DOCKER) push $(IMAGE)
 
 tag:
 	if [ -n "$(TAG)" ] ; then $(DOCKER) tag $(IMAGE):cmu $(IMAGE):$(TAG) ; fi

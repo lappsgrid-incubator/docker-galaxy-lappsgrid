@@ -5,10 +5,10 @@ FROM bgruening/galaxy-stable:16.01
 
 MAINTAINER Keith Suderman, suderman@cs.vassar.edu
 
-ENV GALAXY_CONFIG_BRAND="LAPPS Docker" 
+ENV GALAXY_CONFIG_BRAND="LAPPS Discovery" 
 #ENV GALAXY_UID=1000 
 #ENV GALAXY_GID=1000 
-#ENV GALAXY_DEFAULT_ADMIN_USER=admin@lappsgrid.org 
+ENV GALAXY_DEFAULT_ADMIN_USER=admin@lappsgrid.org 
 #ENV GALAXY_DEFAULT_ADMIN_PASSWORD=admin 
 ENV GALAXY_DEFAULT_ADMIN_KEY=admin 
 
@@ -23,7 +23,7 @@ RUN chmod a+x /usr/bin/lsd
 
 #ADD ./welcome.html /galaxy-central/static/welcome.html
 #ADD ./welcome.html /galaxy-central/web/welcome.html
-#ADD ./welcome.html /etc/galaxy/web/welcome.html
+ADD ./welcome.html /etc/galaxy/web/welcome.html
 ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
 ADD ./tools /galaxy-central/tools
 
