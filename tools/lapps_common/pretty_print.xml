@@ -2,7 +2,7 @@
   <description>Pretty prints the JSON input</description>
   <command interpreter='lsd'>../lapps_common/pretty_print.lsd $input $output</command>
   <inputs>
-    <param name='input' type='data' format='lif' label='input' />
+    <param name='input' type='data' format='json,lif' label='input' />
   </inputs>
   <outputs>
     <data name='output' format='lif' />

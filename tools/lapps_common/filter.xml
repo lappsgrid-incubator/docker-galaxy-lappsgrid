@@ -1,14 +1,16 @@
-<tool id='lapps.tools.filter' name='Filter Annotations' version='1.0.0'>
-  <description>Renames annotations</description>
-  <command interpreter='lsd'>filter.lsd $input $output $cond $pretty</command>
+<tool id='lapps.tools.filter' name='Filter Annotations w/ Expr' version='1.0.0'>
+  <description>Select views with the specified annotation type.</description>
+  <command interpreter='lsd'>filter.lsd $input $output "$cond" $pretty</command>
   <inputs>
-    <param name='input' type='data' format='lif' label='Input' />
-    <param name="cond" type="text" size="5x40" area="true" label="Condition"/>
+    <param name='input' type='data' format='json,lif' label='Input' />
+    <param name="cond" type="text" size="5x40" area="true" label="Condition">
+        <sanitizer sanitize="False"/>
+    </param>
     <param name="pretty" type="boolean" label="Pretty print result"/>
   </inputs>
   <outputs>
     <data name='output' format='lif'/>
   </outputs>
-  <help>Renames the annotations in the last view in the document.
+  <help>Copies the view(s) with the selected annotation types to the end of the list of views.
   </help>
 </tool>

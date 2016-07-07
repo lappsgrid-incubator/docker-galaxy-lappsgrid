@@ -19,12 +19,12 @@ annotation = annotation.replaceAll("__pd__", "#")
 DC data = Serializer.parse(input.text, DC)
 Container container = data.payload
 View view = container.views[-1]
-List<Annotation> annotations = view.annotations.findAll { it.label == annotation }
+List<Annotation> annotations = view.annotations.findAll { it.atType == annotation }
 annotations.each { a ->
 	String value = a.features[oldName]
 	if (value) {
 		a.features.remove(oldName)
-		a.features[newName] = label
+		a.features[newName] = value
 	}
 }
 

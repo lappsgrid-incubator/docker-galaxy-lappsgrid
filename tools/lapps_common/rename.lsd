@@ -19,9 +19,9 @@ newName = newName.replaceAll("__pd__", "#")
 DC data = Serializer.parse(input.text, DC)
 Container container = data.payload
 View view = container.views[-1]
-List<Annotation> annotations = view.annotations.findAll { it.label == oldName }
+List<Annotation> annotations = view.annotations.findAll { it.atType == oldName }
 println "Found ${annotations.size()} annotations that matched ${oldName}"
 
-annotations.each { it.label = newName }
+annotations.each { it.atType = newName }
 
 output.text = data.asPrettyJson()

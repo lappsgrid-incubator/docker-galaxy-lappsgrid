@@ -1,17 +1,10 @@
 #!/usr/bin/env lsd
 
-boolean useLocalhost = false
+//String base = "http://vassar.lappsgrid.org/invoker/anc"
+String base = "http://manager:8080/invoker/lapps"
 
-//String base = "http://grid.anc.org:8080/service_manager/invoker/anc"
-String base = "http://manager:8080/service_manager/invoker/vassar"
-String username = "operator"
-String password = "operator"
-
-if (useLocalhost) {
-	base = "http://localhost:8080/service_manager/invoker/picard"
-	username = "operator"
-	password = "operator"
-}
+String username = "tester"
+String password = "tester"
 
 String service = args[0]
 String input = args[1]

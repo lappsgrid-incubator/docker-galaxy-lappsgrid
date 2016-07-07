@@ -1,4 +1,9 @@
+//include Config
+
 import static org.lappsgrid.discriminator.Discriminators.Uri
+
+//String url = "http://grid.anc.org:9080/EvaluationServices/services/AnnotationEvaluator"
+String url = "http://evaluation:8080/EvaluationServices/services/AnnotationEvaluator"
 
 File gold = new File(args.gold)
 File test = new File(args.test)
@@ -18,13 +23,10 @@ Container goldContainer = goldData.payload
 View goldView = goldContainer.views[-1]
 String goldProducer = goldView.metadata.contains[annotation]?.producer
 
-//View goldView = findView(goldContainer.payload, goldAnnotationType, goldAnnotationProducer)
-
 DataContainer testData = Serializer.parse(test.text, DataContainer)
 Container testContainer = testData.payload
 View testView = testContainer.views[-1]
 String testProducer = testView.metadata.contains[annotation]?.producer
-//View testView = findView(testContainer.payload, testAnnotationType, testAnnotationProducer)
 
 
 println "Assembling container"
@@ -46,7 +48,6 @@ config.testAnnotationProducer = testProducer
 config.testAnnotationFeature = testFeature
 
 container.metadata['evaluation-configuration'] = config
-String url = "http://evaluation:8080/EvaluationServices/services/AnnotationEvaluator"
 def eval = new ServiceClient(url, null, null)
 
 DataContainer data = new DataContainer()

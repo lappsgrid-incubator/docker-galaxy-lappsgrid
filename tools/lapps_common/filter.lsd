@@ -5,25 +5,26 @@ File output = new File(args[1])
 String condition = args[2] // "{ it -> it.metadata.contains['${Uri.TOKEN}'] }"
 boolean prettyPrint = args[3] as Boolean
 
+println "The condition is: $condition"
 def shell = new GroovyShell()
-def test = shell.evaluate(condition)
+def test = shell.evaluate("{ view -> ${condition} }")
 
-class DataContainer extends Data<Container> {}
+//class DataContainer extends Data<Container> {}
 
-DataContainer data = Serializer.parse(input.text, DataContainer)
-Container container = data.payload
+Data data = Serializer.parse(input.text, Data)
+Container container = new Container(data.payload)
 Container copy = new Container()
 copy.text = container.text
 copy.language = container.language
 copy.metadata = container.metadata
-copy.views << container.views.findAll(test)
+copy.views.addAll container.views.findAll(test)
 
 data = new DataContainer(copy)
 if (prettyPrint) {
 	output.text = data.asPrettyJson()
 }
 else {
-	ouput.text = data.asJson()
+	output.text = data.asJson()
 }
 
 
