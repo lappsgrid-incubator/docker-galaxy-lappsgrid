@@ -1,4 +1,4 @@
-DOCKER=/usr/local/bin/docker
+DOCKER=docker
 IMAGE=lappsgrid/galaxy-discovery
 TARFILE=galaxy-lappsgrid-cmu.tar
 TAG=discovery
