@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y bash emacs24-nox
 
 ADD ./packages/lsd-latest.tgz /usr/bin/
 ADD ./packages/brat.tgz /galaxy-central/config/plugins/visualizations
-ADD ./packages/svm_rank_linux64.tgz /usr/bin
+#ADD ./packages/svm_rank_linux64.tgz /usr/bin
 RUN chmod a+x /usr/bin/lsd
 
 #ADD ./welcome.html /galaxy-central/static/welcome.html
