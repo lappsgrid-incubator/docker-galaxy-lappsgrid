@@ -14,12 +14,15 @@ no-cache:
 
 latest:
 	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
-	
+
 push:
 	$(DOCKER) push $(IMAGE)
 
 tag:
 	if [ -n "$(TAG)" ] ; then $(DOCKER) tag $(IMAGE):cmu $(IMAGE):$(TAG) ; fi
+
+run:
+	docker run --name galaxy -d -p 80:80 -p 9001:9001 -p 9002:9002 -p 8800:8800 lappsgrid/galaxy-discovery
 
 help:
 	@echo "GOALS"
@@ -36,5 +39,4 @@ help:
 	@echo "help"
 	@echo "    Prints these usage instructions."
 	@echo
-	
 

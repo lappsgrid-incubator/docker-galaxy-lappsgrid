@@ -1,7 +1,7 @@
 # Lappsgrid Galaxy Flavour 
 #
 
-FROM bgruening/galaxy-stable:16.01
+FROM bgruening/galaxy-stable
 
 MAINTAINER Keith Suderman, suderman@cs.vassar.edu
 
@@ -50,6 +50,7 @@ EXPOSE :80
 EXPOSE :21
 EXPOSE :22
 EXPOSE :8800
+EXPOSE :9002
 EXPOSE :9002
 
 # Autostart script that is invoked during container start
