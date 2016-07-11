@@ -9,7 +9,7 @@ String output = args[3]
 String username = args[4] ?: server.username ?: "operator"
 String password = args[5] ?: server.password ?: "operator"
 
-String url = "${server.url}/vassar:${service}" 
+String url = "${server.url}/lapps:${service}" 
 ServiceClient client = new ServiceClient(url, username, password)
 String json = new File(input).text
 new File(output).text = client.execute(json)
