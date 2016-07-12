@@ -6,7 +6,7 @@ String pattern = args[0]
 String type = args[1]
 File output = new File(args[2])
 
-String url = "${server.url}/${type}"
+String url = "${server.url}:${type}"
 datasource = new ServiceClient(url, server.username, server.password)
 
 

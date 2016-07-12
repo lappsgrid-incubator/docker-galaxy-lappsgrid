@@ -6,7 +6,7 @@ String key = args[0]
 String type = args[1]
 String output = args[2]
 
-def url = "${server.url}/${type}"
+def url = "${server.url}:${type}"
 
 def service = new DataSourceClient(url, server.username, server.password)
 new File(output).text = service.get(key)

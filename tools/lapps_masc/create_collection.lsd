@@ -12,7 +12,7 @@ if (!dir.exists()) {
     }
 }
 
-String url = "${server.url}/${type}"
+String url = "${server.url}:${type}"
 DataSourceClient datasource = new DataSourceClient(url, server.username, server.password)
 
 int size = end - start
