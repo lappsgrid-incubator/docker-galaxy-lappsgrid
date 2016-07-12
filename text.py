@@ -12,6 +12,8 @@ import tempfile
 
 from galaxy.datatypes.data import get_file_peek, Text
 from galaxy.datatypes.metadata import MetadataElement
+from galaxy.datatypes.metadata import ListParameter
+from galaxy.datatypes.metadata import MetadataParameter
 from galaxy.util import nice_size, string_as_bool
 
 import logging
@@ -102,6 +104,15 @@ class Lapps( Json ):
     header = '''{"discriminator":'''
     blurb = "Lapps Data object"
 
+    # MetadataElement(name="annotations", desc="Annotations added during processing", default=[], param=ListParameter, readonly=False, visible=True, no_value=[])
+    #
+    # def __init__(self, **kwd):
+    #     Json.__init__(self, **kwd)
+    #
+    # def init_meta( self, dataset, copy_from=None ):
+    #     Json.init_meta(self, dataset, copy_from=copy_from)
+
+
     def sniff(self, filename):
         """
         Reads the start of the file (ignoring whitespace) looking for the
@@ -133,6 +144,12 @@ class Lif( Lapps ):
     header = '''{"discriminator":"http://vocab.lappsgrid.org/ns/media/jsonld"'''
     blurb = "Lapps Interchange Format (LIF)"
 
+    # def __init__(self, **kwd):
+    #     Lapps.__init__(self, **kwd)
+    #
+    # def init_meta( self, dataset, copy_from=None ):
+    #     Lapps.init_meta(self, dataset, copy_from=copy_from)
+
     def sniff(self, filename):
         """
         Reads the start of the file (ignoring whitespace) looking for the
@@ -160,6 +177,12 @@ class Gate( Lapps ):
     header = '{"discriminator":"http://vocab.lappsgrid.org/ns/media/xml#gate"'
     blurb = "Gate/XML in a Lapps Container"
 
+    # def __init__(self, **kwd):
+    #     Lapps.__init__(self, **kwd)
+    #
+    # def init_meta( self, dataset, copy_from=None ):
+    #     Lapps.init_meta(self, dataset, copy_from=copy_from)
+
     def sniff(self, filename):
         """
         Reads the start of the file (ignoring whitespace) looking for the
@@ -186,6 +209,12 @@ class LDC( Lapps ):
     file_ext = "ldc"
     header = '{"discriminator":"http://vocab.lappsgrid.org/ns/media/xml#ldc"'
     blurb = "LDC/XML in a Lapps Container"
+
+    # def __init__(self, **kwd):
+    #     Lapps.__init__(self, **kwd)
+    #
+    # def init_meta( self, dataset, copy_from=None ):
+    #     Lapps.init_meta(self, dataset, copy_from=copy_from)
 
     def sniff(self, filename):
         """

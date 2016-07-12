@@ -26,7 +26,7 @@
     <datatype extension="xml" type="galaxy.datatypes.xml:GenericXml" mimetype="application/xml" display_in_upload="true"/>
     <datatype extension="bgzip" type="galaxy.datatypes.binary:Binary" subclass="True" />
     <datatype extension="xls" type="galaxy.datatypes.tabular:Tabular"/>
-    <datatype extension="oauth" type="galaxy.datatypes.data:Text" display_in_upload="true" description="An OAuth2 token"/>
+    <datatype extension="oauth" type="galaxy.datatypes.data:Text" display_in_upload="true" description="An OAuth2 token" subclass="True"/>
     <datatype extension="gate" type="galaxy.datatypes.text:Gate" display_in_upload="true">
       <converter file="gate_to_lif_converter.xml" target_datatype="lif"/>
       <converter file="gate_to_lif_converter.xml" target_datatype="lapps"/>
@@ -42,7 +42,7 @@
     </datatype>
     <datatype extension="json" type="galaxy.datatypes.text:Json" display_in_upload="True"/>
     <!-- graph datatypes -->
-    <datatype extension="rdf" type="galaxy.datatypes.graph:Rdf" display_in_upload="true"/>
+    <datatype extension="rdf" type="galaxy.datatypes.triples:Rdf" display_in_upload="true"/>
     <!-- Excel datatypes -->
     <datatype extension="xlsx" type="galaxy.datatypes.binary:Xlsx" display_in_upload="true" />
   </registration>
