@@ -23,7 +23,10 @@ ENV TERM=xterm
 RUN apt-get update && apt-get install -y bash emacs24-nox 
 
 RUN wget http://www.anc.org/downloads/docker/lsd-latest.tgz
-ADD ./lsd-latest.tgz /usr/bin/
+RUN tar xzvf lsd-latest.tgz
+RUN mv lsd* /usr/bin
+
+#ADD ./packages/lsd-latest.tgz /usr/bin/
 #ADD ./lsd /usr/bin
 #ADD ./lsd-2.2.0.jar /usr/bin
 ADD ./packages/brat.tgz /galaxy-central/config/plugins/visualizations

@@ -9,9 +9,9 @@
       <param name="start" type="integer" value="0" min="0"/>
       <param name="end" type="integer" value="392" max="392"/>
       <param name="type" type="select">
-          <option value="anc:masc.text_2.2.0">Text</option>
-          <option value="anc:masc.lif_2.2.0">LIF</option>
-          <option value="anc:masc.json_2.2.0">Gold Annotations</option>
+          <option value="masc.text_2.2.0">Text</option>
+          <option value="masc.lif_2.2.0">LIF</option>
+          <option value="masc.json_2.2.0">Gold Annotations</option>
       </param>
   </inputs>
   <outputs>
