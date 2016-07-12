@@ -9,9 +9,9 @@ ENV BARE=True
 ENV GALAXY_CONFIG_BRAND="LAPPS Discovery" 
 #ENV GALAXY_UID=1000 
 #ENV GALAXY_GID=1000 
-#ENV GALAXY_DEFAULT_ADMIN_USER=admin@lappsgrid.org 
 #ENV GALAXY_DEFAULT_ADMIN_PASSWORD=admin 
 #ENV GALAXY_DEFAULT_ADMIN_KEY=admin 
+ENV GALAXY_DEFAULT_ADMIN_USER=admin@lappsgrid.org 
 ENV GALAXY_CONFIG_ADMIN_USERS=admin@lappsgrid.org
 ENV GALAXY_CONFIG_ADMIN_KEY=admin
 ENV GALAXY_CONFIG_PORT=80
@@ -32,11 +32,11 @@ RUN chmod a+x /usr/bin/lsd
 ADD ./welcome.html /etc/galaxy/web/welcome.html
 ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
 ADD ./tools /galaxy-central/tools
+ADD ./job_conf.xml /etc/galaxy/job_conf.xml
 
-
-#RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
-#RUN install-repository \
-#    "--url https://testtoolshed.g2.bx.psu.edu/ -o ksuderman --name lapps_dockertypes_1_0_0 --panel-section-name Converters"
+RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
+RUN install-repository \
+    "--url https://testtoolshed.g2.bx.psu.edu/ -o ksuderman --name lapps_dockertypes_1_0_0 --panel-section-name Converters"
      
 #RUN echo "192.168.99.100 docker" >> /etc/hosts
 
@@ -50,7 +50,6 @@ EXPOSE :80
 EXPOSE :21
 EXPOSE :22
 EXPOSE :8800
-EXPOSE :9002
 EXPOSE :9002
 
 # Autostart script that is invoked during container start
