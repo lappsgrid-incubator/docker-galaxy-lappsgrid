@@ -33,6 +33,6 @@ boolean isLif(Data data) {
             return true;
             break;
     }
-    println "Not a LIF document"
+    //println "Not a LIF document"
     return false
 }

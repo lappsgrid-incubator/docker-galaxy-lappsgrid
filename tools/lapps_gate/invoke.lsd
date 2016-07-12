@@ -5,13 +5,13 @@ include "Config"
 String service = args[0]
 String input = args[1]
 String output = args[2]
-String username = args[3] ?: server.username ?: "operator"
-String password = args[4] ?: server.password ?: "operator"
+String username = args[3] ?: server.username ?: "tester"
+String password = args[4] ?: server.password ?: "tester"
 
 //String url = "http://grid.anc.org:8080/service_manager/invoker/anc:${service}"
 //String url = "http://localhost:8080/service_manager/invoker/anc:${service}"
 //String url = "http://galaxy.lappsgrid.org/invoker/anc:${service}"
-String url = "${server.url}/lapps:${service}" //"http://docker:8080/service_manager/invoker/docker:${service}"
+String url = "${server.url}:${service}" //"http://docker:8080/service_manager/invoker/docker:${service}"
 
 ServiceClient client = new ServiceClient(url, username, password)
 String json = new File(input).text

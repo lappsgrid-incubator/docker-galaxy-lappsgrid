@@ -1,5 +1,5 @@
 server = [
-	url:'http://manager:8080/service_manager/invoker',
+	url:'http://manager:8080/service_manager/invoker/lapps',
 	username:'operator',
 	password:'operator'
 ]
