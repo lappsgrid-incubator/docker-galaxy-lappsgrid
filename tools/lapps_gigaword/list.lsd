@@ -1,13 +1,11 @@
-include ../Config
-
 import static org.lappsgrid.discriminator.Discriminators.Uri
 
 int start = args[0] as Integer
 int end = args[1] as Integer
 File output = new File(args[2])
 
-//String url = "http://gigaword:8080/GigawordDataSource/services/GigawordDataSource"
-DataSourceClient service = new DataSourceClient(servers.gigaword)
+String url = "http://gigaword:8080/GigawordDataSource/services/GigawordDataSource"
+DataSourceClient service = new DataSourceClient(url, null, null)
 String json = service.execute(new ListRequest(start, end).asJson())
 Data data = Serializer.parse(json, Data)
 if (Uri.ERROR == data.discriminator) {
