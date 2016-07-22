@@ -11,7 +11,7 @@
         <tool file="lapps_masc/create_collection.xml"/>
         <tool file="lapps_masc/query_collection.xml"/>
 	</section>
-    <section id="ldc" name="Gigaword">
+    <section id="ldc" name="Hostage Corpus (Gigaword)">
         <tool file="lapps_gigaword/keyprovider.xml"/>
         <tool file="lapps_gigaword/list.xml"/>
         <tool file="lapps_gigaword/get.xml"/>

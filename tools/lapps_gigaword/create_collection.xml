@@ -1,13 +1,12 @@
 <tool id="gigaword.collection" name="Create Gigaword Collection" version="1.0.0">
-  <command interpreter="lsd">create_collection.lsd $input $start $end</command>
+  <command interpreter="lsd">create_collection.lsd $start $end</command>
 
   <inputs>
-    <param name="input" type="data" format="txt" label="Index List" help="List of Gigaword document ID values." />
       <param name="start" type="integer" value="0" min="0"/>
-      <param name="end" type="integer" value="392" max="392"/>
+      <param name="end" type="integer" value="2624" max="2624"/>
   </inputs>
   <outputs>
-    <collection name="list_output" type="list" label="Output List" format="ldc">
+    <collection name="list_output" type="list" label="Output List" format="lif">
         <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
     </collection>
   </outputs>

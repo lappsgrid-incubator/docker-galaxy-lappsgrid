@@ -1,7 +1,7 @@
 #!/usr/bin/env lsd
 
 //String base = "http://vassar.lappsgrid.org/invoker/anc"
-String base = "http://manager:8080/invoker/lapps"
+String base = "http://manager:8080/service_manager/invoker/lapps"
 
 String username = "tester"
 String password = "tester"

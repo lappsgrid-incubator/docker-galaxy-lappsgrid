@@ -1,8 +1,5 @@
-include ../Config
-
-File input = new File(args[0])
-int start = args[1] as int
-int end = args[2] as int
+int start = args[0] as int
+int end = args[1] as int
 
 dir = new File("outputs")
 
@@ -12,10 +9,11 @@ if (!dir.exists()) {
     }
 }
 
-//DataSourceClient datasource = new DataSourceClient("http://gigaword:8080/GigawordDataSource/services/GigawordDataSource")
-DataSourceClient datasource = new DataSourceClient(servers.gigaword)
-String[] lines = input.readLines()
-lines[start..end].each { line ->
+DataSourceClient datasource = new DataSourceClient("http://gigaword:8080/GigawordDataSource/services/GigawordDataSource")
+if (start < 0) start = 0
+if (end < start) end = start
+String[] lines = datasource.list(start,end)
+lines.each { line ->
     String id = line.trim()
     File file = new File(dir, "${id}.txt")
     file.text = datasource.get(id)
