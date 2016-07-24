@@ -15,7 +15,7 @@ if (end < start) end = start
 String[] lines = datasource.list(start,end)
 lines.each { line ->
     String id = line.trim()
-    File file = new File(dir, "${id}.txt")
+    File file = new File(dir, "${id}.lif")
     file.text = datasource.get(id)
 }
 
