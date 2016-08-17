@@ -1,11 +1,12 @@
 String token = args[0]
 File input = new File(args[1])
 File output = new File(args[2])
+String server = args[3]
 
 String[] lines = input.readLines()
 String key = lines[0]
 
-String url = "http://gigaword:8080/GigawordDataSource/services/GigawordDataSource"
+String url = "http://$server:8080/GigawordDataSource/services/GigawordDataSource"
 DataSource service = new DataSourceClient(url, null, null)
 //service.setToken(token)
 output.text = service.get(key)

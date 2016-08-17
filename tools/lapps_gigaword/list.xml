@@ -1,7 +1,11 @@
 <tool id='gigaword.list' name='Gigaword List' version='1.0.0'>
     <description>Obtain a list of document ID values available from the Gigaword Datasource.</description>
-    <command interpreter='lsd'>list.lsd $start $end $output</command>
+    <command interpreter='lsd'>list.lsd $start $end $output $corpus</command>
     <inputs>
+    	<param name="corpus" type="select">
+    		<option value="gigaword">Kidnap 1 (Gigaword)</option>
+    		<option value="kidnap">Kidnap 2 (Gigaword)</option>
+    	</param>
         <param name="start" type="text" label="Start" value="0"/>
         <param name="end" type="text" label="End" value="480"/>
     </inputs>

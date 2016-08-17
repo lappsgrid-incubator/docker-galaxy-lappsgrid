@@ -1,5 +1,6 @@
 int start = args[0] as int
 int end = args[1] as int
+String server = args[2]
 
 dir = new File("outputs")
 
@@ -9,7 +10,7 @@ if (!dir.exists()) {
     }
 }
 
-DataSourceClient datasource = new DataSourceClient("http://gigaword:8080/GigawordDataSource/services/GigawordDataSource")
+DataSourceClient datasource = new DataSourceClient("http://$server:8080/GigawordDataSource/services/GigawordDataSource")
 if (start < 0) start = 0
 if (end < start) end = start
 String[] lines = datasource.list(start,end)

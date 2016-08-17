@@ -26,7 +26,9 @@ copy.metadata = container.metadata
 //copy.views << container.views.findAll(test)
 List views = container.views.findAll(test)
 //views.each { copy.views << it }
-copy.views.addAll(views)
+if (views && views.size() > 0) {
+	copy.views.addAll(views)
+}
 
 data = new DataContainer(copy)
 if (prettyPrint) {

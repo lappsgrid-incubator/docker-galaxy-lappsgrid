@@ -1,6 +1,7 @@
 String key = args[0]
 File output = new File(args[1])
+String server = args[2]
 
-String url = "http://gigaword:8080/GigawordDataSource/services/GigawordDataSource"
+String url = "http://$server:8080/GigawordDataSource/services/GigawordDataSource"
 DataSource service = new DataSourceClient(url, null, null)
 output.text = service.get(key)
