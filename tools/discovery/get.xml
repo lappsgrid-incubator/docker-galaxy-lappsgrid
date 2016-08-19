@@ -1,0 +1,11 @@
+<tool id='discovery.test.get' name='Get a document' version='1.0.0'>
+    <description>Get a test document</description>
+    <command interpreter="lsd">get.lsd $output</command>
+    <outputs>
+        <data name='output' format='lif'/>
+    </outputs>
+    <help><![CDATA[
+TODO: Useful help test should go here.
+]]>
+    </help>
+</tool>
