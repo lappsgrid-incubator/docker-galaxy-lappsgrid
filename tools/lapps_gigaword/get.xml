@@ -3,8 +3,8 @@
     <command interpreter='lsd'>get.lsd $key $output $corpus</command>
     <inputs>
     	<param name="corpus" type="select">
-    		<option value="gigaword">Kidnap 1 (Gigaword)</option>
-    		<option value="kidnap">Kidnap 2 (Gigaword)</option>
+    		<option value="kidnap1">Kidnap 1 (Gigaword)</option>
+    		<option value="kidnap2">Kidnap 2 (Gigaword)</option>
     	</param>
         <param name="key" type="text" label="Document ID" value="NYT_ENG_20050622.0308"/>
     </inputs>

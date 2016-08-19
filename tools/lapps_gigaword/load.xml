@@ -3,8 +3,8 @@
   <command interpreter="lsd">load.lsd $token $input $output $corpus</command>
   <inputs>
     	<param name="corpus" type="select">
-    		<option value="gigaword">Kidnap 1 (Gigaword)</option>
-    		<option value="kidnap">Kidnap 2 (Gigaword)</option>
+    		<option value="kidnap1">Kidnap 1 (Gigaword)</option>
+    		<option value="kidnap2">Kidnap 2 (Gigaword)</option>
     	</param>
     <param name="input" type="data" format="txt"/>
     <param name="token" type="hidden" label="OAuth Token" value="123abc"/>

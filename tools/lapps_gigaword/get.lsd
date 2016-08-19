@@ -1,7 +1,20 @@
 String key = args[0]
 File output = new File(args[1])
 String server = args[2]
+String passord = args[3]
 
-String url = "http://$server:8080/GigawordDataSource/services/GigawordDataSource"
-DataSource service = new DataSourceClient(url, null, null)
-output.text = service.get(key)
+if (password != "discovery2020") {
+	println "Invalid password"
+	return 1
+}
+
+//String url = "http://$server:8080/GigawordDataSource/services/GigawordDataSource"
+//DataSource service = new DataSourceClient(url, null, null)
+//output.text = service.get(key)
+File file = new File("/corpora/$server/$key.lif")
+if (!file.exists) {
+	println "File not found ${file.path}"
+	return 1
+}
+output.text = file.text
+	

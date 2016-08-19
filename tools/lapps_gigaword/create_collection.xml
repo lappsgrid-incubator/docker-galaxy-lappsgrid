@@ -1,10 +1,11 @@
 <tool id="gigaword.collection" name="Create Gigaword Collection" version="1.0.0">
-  <command interpreter="lsd">create_collection.lsd $start $end $corpus</command>
+  <command interpreter="lsd">create_collection.lsd $start $end $corpus $password</command>
   <inputs>
   	  <param name="corpus" type="select">
-  	  	<option value="gigaword">Kidnap 1 (Gigaword)</option>
+  	  	<option value="kidnap1">Kidnap 1 (Gigaword)</option>
   	  	<option value="kidnap2">Kidnap 2 (Gigaword)</option>
   	  </param>
+      <param name="password" type="text" label="Password"/>
       <param name="start" type="integer" value="0" min="0"/>
       <param name="end" type="integer" value="2624"/>
   </inputs>
