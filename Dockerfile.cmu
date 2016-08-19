@@ -1,7 +1,7 @@
 # Lappsgrid Galaxy Flavour 
 #
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:16.04
 
 MAINTAINER Keith Suderman, suderman@cs.vassar.edu
 
