@@ -1,6 +1,6 @@
 <tool id='gigaword.list' name='Gigaword List' version='1.0.0'>
     <description>Obtain a list of document ID values available from the Gigaword Datasource.</description>
-    <command interpreter='lsd'>list.lsd $start $end $output $corpus</command>
+    <command interpreter='lsd'>list.lsd $start $end $output $corpus $password</command>
     <inputs>
     	<param name="corpus" type="select">
     		<option value="kidnap1">Kidnap 1 (Gigaword)</option>

@@ -4,7 +4,21 @@ int start = args[0] as Integer
 int end = args[1] as Integer
 File output = new File(args[2])
 String server = args[3]
+String password = args[4]
 
+if (password != "discovery2020") {
+	println "Invalid password"
+	return 1
+}
+
+File index = new File("/corpora/$server/index.txt")
+def lines = index.readLines()
+if (end > lines.size()) {
+	end = lines.size()
+}
+output.text = lines[start..end].collect { it.tokenize()[0] }.join("\n")
+
+/*
 String url = "http://$server:8080/GigawordDataSource/services/GigawordDataSource"
 DataSourceClient service = new DataSourceClient(url, null, null)
 String json = service.execute(new ListRequest(start, end).asJson())
@@ -15,5 +29,5 @@ if (Uri.ERROR == data.discriminator) {
 }
 List keys = data.payload
 output.text = keys.join("\n")
-
+*/
 

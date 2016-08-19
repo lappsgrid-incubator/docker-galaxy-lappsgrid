@@ -1,6 +1,12 @@
 int start = args[0] as int
 int end = args[1] as int
 String server = args[2]
+String passord = args[3]
+
+if (password != "discovery2020") {
+	println "Invalid password"
+	return 1
+}
 
 dir = new File("outputs")
 
