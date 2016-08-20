@@ -1,2 +1,2 @@
 File output = new File(args[0])
-output.text = new File("/var/corpora/kidnap1-stanford/AFP_ENG_19941109.0412.lif").text
+output.text = new File("/corpora/kidnap1-s/AFP_ENG_19941109.0412.lif").text
