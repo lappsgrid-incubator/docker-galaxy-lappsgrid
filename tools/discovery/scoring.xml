@@ -1,4 +1,4 @@
-<tool id='discovery.composite.scoring' name='Scoring' version='1.0.0'>
+<tool id='discovery.composite.scoring' name='Passage Scoring' version='1.0.0'>
     <description>composite score algorithms</description>
     <command interpreter="lsd">scoring.lsd $algorithm $brevity $offset $term $match $input $output</command>
     <inputs>

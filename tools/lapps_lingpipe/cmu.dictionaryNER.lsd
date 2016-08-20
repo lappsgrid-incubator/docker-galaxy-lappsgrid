@@ -5,7 +5,7 @@ String input = args[1]
 String output = args[2]
 
 //ServiceClient service = new ServiceClient("http://miami.lti.cs.cmu.edu:8081/LingpipeServices/1.0.0-SNAPSHOT/services/LingpipeDictionaryBasedNER")
-ServiceClient service = new ServiceClient("http://vassar:808/LingpipeServices/1.0.0/services/LingpipeDictionaryBasedNER")
+ServiceClient service = new ServiceClient("http://vassar:8080/LingpipeServices/1.0.0/services/LingpipeDictionaryBasedNER")
 
 Data dc = Serializer.parse(new File(input).text, Data)
 dc.setParameter("dictionary", new File(dictionary_file).text);

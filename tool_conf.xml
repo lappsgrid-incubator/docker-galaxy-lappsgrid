@@ -140,6 +140,7 @@
 	<section id="misc" name="Miscellaneous">
 		<!-- <tool file="lapps_common/filter.xml"/> -->
 		<tool file="lapps_common/simple_filter.xml"/>
+		<tool file="lapps_common/freeform_filter.xml"/>
 		<tool file="lapps_common/pretty_print.xml"/>
         <tool file="lapps_common/nerfix.xml"/>
 		<tool file="lapps_common/rename.xml"/>
