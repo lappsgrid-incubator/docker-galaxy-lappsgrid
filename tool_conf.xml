@@ -16,12 +16,13 @@
     <section id="ldc" name="Kidnap Corpus (Gigaword)">
         <tool file="lapps_gigaword/list.xml"/>
         <tool file="lapps_gigaword/get.xml"/>
-        <tool file="lapps_gigaword/create_collection.xml"/>
+        <tool file="lapps_gigaword/kidnap_collection.xml"/>
         <tool file="lapps_gigaword/query.xml"/>
     </section>
 	<section id="discovery" name="Discovery 2020">
 		<tool file="discovery/passage_extractor.xml"/>
 		<tool file="discovery/scoring.xml"/>
+		<tool file="discovery/summarize.xml"/>
 		<tool file="discovery/get.xml"/>
 	</section>    
 	<section id="tokenizers" name="Tokenizers">

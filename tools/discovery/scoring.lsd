@@ -20,7 +20,7 @@ Map factories = [
 
 CompositeScorer scorer = new CompositeScorer()
 algorithms.each { alg ->
-    println "Creating scorer for $alg"
+    //println "Creating scorer for $alg"
     scorer.add(factories[alg](), weights[alg])
 }
 
@@ -30,14 +30,18 @@ List<View> views = container.findViewsThatContain('Window')
 
 View view = views[-1]
 List<Annotation> annotations = view.annotations
+View scores = container.newView()
+scores.addContains('Scores', 'scorer.lsd', 'Scores')
 
 Window document = new Window(0, container.text.length(), container.text, view.metadata.keyterms ?: [])
 
-Map scores = [:]
+int id = 0
 annotations.each { Annotation a ->
     List terms = a.features.matches.collect { it.term }
     Window window = new Window((int)a.start, (int)a.end, a.features.text, terms)
-    a.features.score = scorer.scoreWindow(window, document)
+    Annotation score = scores.newAnnotation("score-${++id}", "Score", a.start, a.end)
+    score.features.score = scorer.scoreWindow(window, document)
+    score.features.window = a.id
 }
 
 //container.views[-1].metadata.scores = scores

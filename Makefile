@@ -1,7 +1,7 @@
 DOCKER=docker
 IMAGE=lappsgrid/galaxy-discovery
 TARFILE=galaxy-lappsgrid-cmu.tar
-TAG=discovery
+#TAG=discovery
 
 discovery:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE) .

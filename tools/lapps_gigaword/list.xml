@@ -9,11 +9,11 @@
           </param>
           <when value="kidnap1">
               <param name="start" type="integer" value="0" min="0"/>
-              <param name="end" type="integer" value="99" max="2624"/>
+              <param name="end" type="integer" value="99" max="2623"/>
           </when>
           <when value="kidnap2">
               <param name="start" type="integer" value="0" min="0"/>
-              <param name="end" type="integer" value="99" max="2071"/>
+              <param name="end" type="integer" value="99" max="2070"/>
           </when>
       </conditional>
 	    <param name="password" type="text" label="Password"/>
