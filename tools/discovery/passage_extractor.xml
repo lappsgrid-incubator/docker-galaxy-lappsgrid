@@ -13,7 +13,7 @@
         <data name='output' format='lif'/>
     </outputs>
     <help><![CDATA[
-TODO: Useful help test should go here.
+Extracts passages, either *Sentence* or *Paragraph* at this time
 ]]>
     </help>
 </tool>

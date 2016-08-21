@@ -1,4 +1,4 @@
-<tool id="kidnap.collection" name="Create Kidnap Collection" version="1.0.0">
+<tool id="create.collection" name="Create Kidnap Collection" version="1.0.0">
   <command interpreter="lsd">kidnap_collection.lsd $corpus.start $corpus.end $corpus.name $password</command>
   <inputs>
       <conditional name="corpus">
