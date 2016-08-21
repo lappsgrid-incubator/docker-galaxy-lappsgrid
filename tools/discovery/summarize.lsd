@@ -23,11 +23,11 @@ if (scores.size() == 0) {
 
 View view = scores[-1]
 output.withWriter { writer ->
-	scores.annotations.each { Annotation a ->
+	view.annotations.each { Annotation a ->
 		if (a.atType == 'Score') {
 			Annotation passage = window.annotations.find { it.id == a.features.window }
-			String term = passage.features.matches.collect { it.term }.join(' ')
-			writer.println "${a.features.score}\t${terms}\t${container.text.substring(a.start, a.end)}"					
+			String terms = passage.features.matches.collect { it.term }.join(', ')
+			writer.println "${a.features.score}\t${terms}\t${container.text.substring((int)a.start, (int)a.end)}"					
 		}
 	}
 }

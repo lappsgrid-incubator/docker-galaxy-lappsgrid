@@ -17,7 +17,8 @@
         <tool file="lapps_gigaword/list.xml"/>
         <tool file="lapps_gigaword/get.xml"/>
         <tool file="lapps_gigaword/kidnap_collection.xml"/>
-        <tool file="lapps_gigaword/query.xml"/>
+        <tool file="lapps_gigaword/kidnap_collection_id.xml"/>
+        <!-- <tool file="lapps_gigaword/query.xml"/> -->
     </section>
 	<section id="discovery" name="Discovery 2020">
 		<tool file="discovery/passage_extractor.xml"/>
