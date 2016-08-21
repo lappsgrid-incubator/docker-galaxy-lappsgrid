@@ -2,6 +2,10 @@ String corpusName = args[0]
 String keys=args[1]
 String password = args[2]
 
+if (password != "discovery2020") {
+	throw new UnsupportedOperationException('Invalid Password')
+}
+
 def replacements = [["__gt__", ">"],
     ["__lt__", "<"],
     ["__sq__", "'"],
