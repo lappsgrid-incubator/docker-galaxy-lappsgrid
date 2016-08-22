@@ -1,4 +1,3 @@
-import java.util.regex.*
 import static org.lappsgrid.discriminator.Discriminators.Uri
 
 def algorithms = args[0].tokenize(',')
@@ -41,16 +40,16 @@ Best best = new Best()
 annotations.each { Annotation a ->
     List terms = a.features.matches.collect { it.term }
     Window window = new Window((int)a.start, (int)a.end, a.features.text, terms)
-    Annotation score = scores.newAnnotation("score-${++id}", "Score", a.start, a.end)
+    Annotation scoreA = scores.newAnnotation("score-${++id}", "Score", a.start, a.end)
     double score = scorer.scoreWindow(window, document)
-    score.features.score = score
-    score.features.window = a.id
+    scoreA.features.score = score
+    scoreA.features.window = a.id
     if (score > best.score) {
     	best.score = score
     	best.start = a.start
     	best.end = a.end
     	best.window = a.id
-    }
+	}
 }
 
 //container.views[-1].metadata.scores = scores
@@ -67,9 +66,7 @@ class Best {
 	double score = -1
 	long start = 0
 	long end = 0
-	String windowId
-	
-	void check(double score, 
+	String window
 }
 	
 interface WindowScorerI {
