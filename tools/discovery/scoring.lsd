@@ -1,3 +1,4 @@
+import java.util.regex.*
 import static org.lappsgrid.discriminator.Discriminators.Uri
 
 def algorithms = args[0].tokenize(',')
@@ -55,8 +56,9 @@ annotations.each { Annotation a ->
 //container.views[-1].metadata.scores = scores
 View bestView = container.newView()
 bestView.addContains('SelectedOutput', 'scoring.lsd', 'SelectedOutput')
-Annotation bestA = bestView.newAnnotation('best-0', best.start, best.end, 'SelectedOutput')
+Annotation bestA = bestView.newAnnotation('best-0', 'SelectedOutput', best.start, best.end)
 bestA.features.window = best.window
+bestA.features.score = best.score
 
 output.text = new Data(Uri.LIF, container).asPrettyJson()
 //println "Wrote ${output.path}"
