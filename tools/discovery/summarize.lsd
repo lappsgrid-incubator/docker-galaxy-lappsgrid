@@ -27,7 +27,9 @@ output.withWriter { writer ->
 		if (a.atType == 'Score') {
 			Annotation passage = window.annotations.find { it.id == a.features.window }
 			String terms = passage.features.matches.collect { it.term }.join(', ')
-			writer.println "${a.features.score}\t${terms}\t${container.text.substring((int)a.start, (int)a.end)}"					
+			String passage = container.text.substring((int)a.start, (int)a.end)
+			passage = passage.replaceAll('\n', ' ')
+			writer.println "${a.features.score}\t${terms}\t${passage}"					
 		}
 	}
 }

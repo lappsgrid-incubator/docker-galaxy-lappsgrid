@@ -8,7 +8,7 @@
 				<option value="kidnap2">Kidnap 2 (Gigaword)</option>
 			</param>
 			<when value="kidnap1">
-		        <param name="key" type="text" label="Document ID" value="APW_ENG_20040429.0759"/>
+		        <param name="key" type="text" label="Document ID" value="AFP_ENG_19940517.0255"/>
 			</when>
 			<when value="kidnap2">
 		        <param name="key" type="text" label="Document ID" value="NYT_ENG_19990908.0298"/>
