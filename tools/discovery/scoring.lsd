@@ -47,7 +47,7 @@ annotations.each { Annotation a ->
     score.features.window = a.id
     if (score > best.score) {
     	best.score = score
-    	best.start = a.start,
+    	best.start = a.start
     	best.end = a.end
     	best.window = a.id
     }

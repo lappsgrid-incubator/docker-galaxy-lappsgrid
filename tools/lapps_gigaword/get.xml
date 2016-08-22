@@ -17,6 +17,6 @@
 	    <param name="password" type="text" label="Password"/>
     </inputs>
     <outputs>
-        <data name='output' format='ldc'/>
+        <data name='output' format='lif'/>
     </outputs>
 </tool>
