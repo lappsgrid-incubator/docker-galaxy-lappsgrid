@@ -2,7 +2,7 @@
   <description>Stanford Sentence Splitter (Vassar)</description>
   <command interpreter='lsd'>../lapps_common/invoke_vassar.lsd stanford.splitter_2.1.0 $input $output</command>
   <inputs>
-    <param name='input' type='data' format='lif,json' label='input' />
+    <param name='input' type='data' format='lif' label='input' />
   </inputs>
   <outputs>
     <data name='output' format='lif' />
