@@ -1,0 +1,424 @@
+import java.util.regex.*
+import static org.lappsgrid.discriminator.Discriminators.Uri
+
+final String WINDOW = "Window"
+
+if (args.size() < 6) {
+	println "Invalid parameters"
+	return 1
+}
+
+String annotationType = "http://vocab.lappsgrid.org/${args[0]}"
+String terms = args[1]
+int sizelimit = args[2] as int
+int numlimit = args[3] as int
+int matchlimit = args[4] as int
+File input = new File(args[5])
+File output = new File(args[6])
+
+def replacements = [["__gt__", ">"],
+    ["__lt__", "<"],
+    ["__sq__", "'"],
+    ["__dq__", '"'],
+    ["__ob__", "["],
+    ["__cb__", "]"],
+    ["__oc__", "{"],
+    ["__cc__", "}"],
+    ["__at__", "@"],
+    ["__cn__", "\n"],
+    ["__cr__", "\r"],
+    ["__tc__", "\t"],
+    ["__pd__", "#"]
+]
+
+replacements.each { pair ->
+    terms = terms.replaceAll(pair[0], pair[1])
+}
+
+
+Data data = validateInputJson(input.text)
+
+if (Uri.ERROR == data.discriminator) {
+    return data.asPrettyJson()
+}
+
+Container container = new Container(data.payload)
+
+Map params = [
+'annotation': annotationType, 
+'sizelimit': sizelimit,
+'numlimit': numlimit,
+'matchlimit': matchlimit
+]
+String text = container.text
+def keyterms = terms.tokenize('\n')
+
+AbstractWindowExtraction extractor = new AnnTypeBasedWindow(params)
+List<Window> candidateWindows = extractor.extract(container, keyterms)
+
+if (candidateWindows == null || candidateWindows.size() == 0) {
+    Container result = new Container()
+    result.text = container.text
+    result.metadata = container.metadata
+    View view = result.newView()
+    view.addContains(annotationType, 'passage_extractor.lsd', annotationType)
+    output.text = new Data(Uri.LIF, result).asJson()
+    println "Wrote ${output.path}"
+    return
+}
+
+
+println "KEYTERMS"
+keyterms.each { println it }
+
+int offset = 0
+
+//Container resultContainer = new Container()
+View resultView = container.newView()
+resultView.addContains(WINDOW, 'passage_extractor.lsd', WINDOW)
+resultView.metadata.keyterms = keyterms
+resultView.metadata.sizelimit = sizelimit
+resultView.metadata.numlimit = numlimit
+resultView.metadata.matchlimit = matchlimit
+
+int id = 0
+candidateWindows.each {Window window -> 
+    resultView.addAnnotation(window.toAnnotation("window-${++id}"))
+}
+output.text = new Data(Uri.LIF, container).asPrettyJson()
+
+Data validateInputJson(String input) {
+    if (input == null) {
+        return error(NO_INPUT)
+    }
+    Data data
+    try {
+        data = Serializer.parse(input, Data)
+    }
+    catch (Exception e) {
+        return error(e.message)
+    }
+    if (Uri.ERROR == data.discriminator) {
+        return data
+    }
+    if (Uri.LIF != data.discriminator && Uri.LAPPS != data.discriminator) {
+        return error(INVALID_DISCRIMINATOR + data.discriminator)
+    }
+    return data
+}
+
+List<String> readKeyterms(File keytermFile) {
+    return keytermFile.readLines()
+}
+
+private Data error(String message) {
+    return new Data(Uri.ERROR, message)
+}
+
+
+/* === helpers === */
+
+interface WindowScorerI {
+    public double scoreWindow(Window window, Window document)
+}
+
+class BrevityScorer implements WindowScorerI {
+    @Override
+    double scoreWindow(Window window, Window document) {
+        int windowSize = window.length()
+        return 1 - ((double) windowSize / (double) document.length());
+    }
+}
+
+class MatchRecallScorer implements WindowScorerI {
+    @Override
+    double scoreWindow(Window window, Window document) {
+        return (double) window.totalMatches() / (double) document.totalMatches()
+    }
+}
+
+class OffsetScorer implements WindowScorerI {
+    @Override
+    double scoreWindow(Window window, Window document) {
+        return ( (double) document.length() - (double) window.start ) /
+                (double) document.length()
+    }
+}
+
+class TermRecallScorer implements WindowScorerI {
+    @Override
+    double scoreWindow(Window window, Window document) {
+        return (double) window.totalContains() / (double) document.totalContains()
+    }
+}
+
+class CompositeScorer implements WindowScorerI {
+
+    private List<WindowScorerI> scorers;
+    def nameSpace = ['termrecall' : TermRecallScorer.class,
+                     'matchrecall' : MatchRecallScorer.class,
+                     'brevity' : BrevityScorer.class,
+                     'offset' : OffsetScorer.class]
+
+    CompositeScorer() {
+        scorers = []
+    }
+
+    @Override
+    String toString() {
+        return scorers.toString()
+    }
+    
+    /**
+     * initiates an instance with specific configuration for each scorers
+     * @param configuration - needs to be formatted
+     *  "scorer1Name : weight, scorer2Name : weight, ..."
+     *  name should be one of ['termrecall', 'matchrecall', 'brevity', 'offset'] all lower cases
+     *  sum of weight should be 1
+     *  (does not have to be using all 4 scorers)
+     */
+    CompositeScorer(String configuration) {
+        this()
+        configuration.split("\\s*,\\s*").each {
+            scorerString ->
+                // TODO: 2016-08-17 18:51:40EDT add error handling for unacceptable names
+                def name = scorerString.split("\\s*:\\s*")[0]
+                def weightString = scorerString.split("\\s*:\\s*")[1]
+                WindowScorerI scorer = nameSpace[name].newInstance()
+                Double weight = Double.parseDouble(weightString)
+                this.add(scorer, weight)
+        }
+
+    }
+
+    /**
+     * this is default, uniform distribution lambda
+     * to customize these lambdas, user should provide a parameter
+     */
+    public void useDefaultScorers() {
+        removeAll();
+        add( new TermRecallScorer(), 0.25d );
+        add( new MatchRecallScorer(), 0.25d );
+        add( new BrevityScorer(), 0.25d );
+        add( new OffsetScorer(), 0.25d );
+    }
+
+    public void removeAll() {
+        scorers.clear();
+    }
+
+    public void add(WindowScorerI scorer, Double lambda ) {
+        scorers.add(new WeightedScorer(scorer , lambda));
+    }
+
+    @Override
+    public double scoreWindow(Window window, Window document) {
+        double result = 0.0d;
+        for ( WindowScorerI scorer : scorers ) {
+            double score = scorer.scoreWindow(window, document);
+            if ( score > 1.0d || score < 0.0d )
+                System.out.println( scorer.getClass().getSimpleName() + " OUT OF BOUNDS: " + score );
+            result += score;
+        }
+        return result;
+    }
+    private class WeightedScorer implements WindowScorerI {
+        Double lambda;
+        WindowScorerI scorer;
+        public WeightedScorer(WindowScorerI scorer , Double lambda ) {
+            this.scorer = scorer;
+            this.lambda = lambda;
+        }
+
+        @Override
+        public double scoreWindow(Window window, Window document) {
+            return lambda * scorer.scoreWindow(window, document);
+        }
+
+        @Override
+        String toString() {
+            return this.scorer.class.getName() + " : " + this.lambda
+        }
+    }
+}
+
+class Window {
+
+    int start // inclusive
+    int end   // exclusive
+    int keytermMatchLimit
+    def keytermMatches
+    def keytermContains
+    def passages
+    def originalAnnotationId
+    double score
+    String text
+
+    def init() {
+        this.keytermMatchLimit = Double.POSITIVE_INFINITY
+        this.keytermMatches = [:].withDefault {0}
+        this.keytermContains = [:]
+        this.passages = []
+    }
+
+    Window(start, end, text, originalId) {
+        init()
+        this.start = start
+        this.end = end
+        this.text = text
+        this.originalAnnotationId = originalId
+    }
+
+    Window(int start, int end, String text, String originalId, int keytermMatchLimit) {
+        this(start, end, text, originalId)
+        this.keytermMatchLimit = keytermMatchLimit
+    }
+
+    Window(int start, int end, String text, String originalId, List<String> keyterms) {
+        this(start, end, text, originalId)
+        this.matches(keyterms)
+        this.contains(keyterms)
+    }
+
+    Window(int start, int end, String text, String originalId,
+           List<String> keyterms, int keytermMatchLimit) {
+        this(start, end, text, originalId, keytermMatchLimit)
+        this.matches(keyterms)
+        this.contains(keyterms)
+    }
+
+    def length() {
+        end - start + 1
+    }
+
+    def matches(String keyterm) {
+        if (!keytermMatches.keySet().contains(keyterm)) {
+            def matchesFound = 0
+            Matcher m = Pattern.compile(keyterm).matcher(text);
+            while (m.find() && matchesFound < keytermMatchLimit) {
+                this.passages.add(new Passage(term: keyterm, start: m.start(), end: m.end()))
+                matchesFound++
+            }
+            keytermMatches[keyterm] = matchesFound
+        }
+        return keytermMatches[keyterm]
+    }
+
+    def matches(List<String> keyterms) {
+        def totalMatches = 0
+        keyterms.each {
+            keyterm -> totalMatches += matches(keyterm)
+        }
+        return totalMatches
+    }
+
+    def totalMatches() {
+        return keytermMatches.values().sum()
+    }
+
+    def totalContains() {
+        return keytermContains.values().sum()
+    }
+
+    def contains(String keyterm) {
+        if (!keytermContains.keySet().contains(keyterm)) {
+            keytermContains[keyterm] = text.contains(keyterm) ? 1 : 0
+       }
+        return keytermContains[keyterm]
+    }
+
+    def contains(List<String> keyterms) {
+        def totalContains = 0
+        keyterms.each {
+            keyterm -> totalContains += contains(keyterm)
+        }
+        return totalContains
+    }
+
+    Annotation toAnnotation(String id) {
+        Annotation window = new Annotation()
+        window.id = id
+        window.setAtType("Window")
+        window.setStart(start)
+        window.setEnd(end)
+        window.atType = "Window"
+        window.features.matches = this.passages
+        window.features.text = this.text
+        window.features.id = this.originalAnnotationId
+        if (this.score != null && this.score >= 0) window.features.score = this.score
+        return window
+    }
+
+    class Passage {
+        String term
+        int start
+        int end
+    }
+
+}
+
+abstract class AbstractWindowExtraction {
+
+     // this is passed when being instantiated
+     // includes all the information to optimize extraction and scoring
+     Map params 
+
+     AbstractWindowExtraction(Map params) {
+        this.params = params
+    }
+
+    abstract List<Window> extract(Container payload,
+      List<String> keyterms)
+}
+
+class AnnTypeBasedWindow extends AbstractWindowExtraction {
+
+    int sizeLimit
+    int numLimit
+    int matchLimit
+
+    AnnTypeBasedWindow(Map params) {
+        super(params)
+        sizeLimit = params.sizelimit == 0 ? Double.POSITIVE_INFINITY : params.sizelimit
+        numLimit = params.numlimit == 0 ? Double.POSITIVE_INFINITY : params.numlimit
+        matchLimit = params.matchlimit == 0 ? Double.POSITIVE_INFINITY : params.matchlimit
+
+    }
+
+    @Override
+    List<Window> extract(Container payload, List<String> keyterms) {
+        String annotationType = this.params.annotation
+
+        List<View> views = payload.findViewsThatContain(annotationType)
+        if (views == null || views.size() == 0) {
+            return Collections.emptyList()
+        }
+
+        String text = payload.text
+        List<Window> extracted = []
+
+        // Get the last view that contains the annotation type and iterate over each annotation
+        // and find each span that contains the keyword.
+        View view = views[-1]
+        for (Annotation a in view.annotations) {
+            if (a.atType == annotationType) {
+                int start = (int) a.start
+                int end = (int) a.end
+
+                if ((end - start) > sizeLimit) {
+                    continue
+                }
+                String covered = text.substring(start, end)
+                Window extraction = new Window(start, end,
+                    covered, a.getId(), keyterms, matchLimit)
+                if (extraction.totalContains() > 0) {
+                    extracted.add(extraction)
+                }
+                if (extracted.size() >= numLimit) {
+                    break
+                }
+            }
+        }
+        return extracted
+    }
+}
