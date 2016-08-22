@@ -3,7 +3,7 @@
     <command interpreter="lsd">span_annotator.lsd $annotations $input $output</command>
     <inputs>
         <param name='annotations' type='data' format='txt' label='annotations' />
-        <param name='input' type='data' format='lif,json' label='input' />
+        <param name='input' type='data' format='lif' label='input' />
     </inputs>
     <outputs>
         <data name='output' format='lif'/>
