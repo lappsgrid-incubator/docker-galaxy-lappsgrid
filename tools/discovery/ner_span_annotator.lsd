@@ -15,27 +15,28 @@ view.addContains(Uri.NE, "discovery.ner_span_annotator", "")
 int id = 0
 annotations.text.tokenize('\n').each { line ->
     def tuple = line.tokenize(',')*.trim()
-    if (tuple.size != 3)
-	return new Data(Uri.ERROR, "Invalid dictionary format").asPrettyJson();
+    if (tuple.size != 3) {
+		return new Data(Uri.ERROR, "Invalid dictionary format").asPrettyJson();
+	}
     int start = tuple[0] as Integer
     int end = tuple[1] as Integer
-    view.newAnnotation("id-${++id}", mapNE(tuple[2]), start, end)
+    view.newAnnotation("id-${++id}", mapNE(tuple[2].trim()), start, end)
 }
 output.text = new Data(Uri.LIF, container).asPrettyJson()
 return
 
 String mapNE(String type) {
-    switch (type) {
-	case "PER":
-	case "PERSON":
+    switch (type.toLowerCase()) {
+	case "per":
+	case "person":
 	    return Uri.PERSON;
-	case "LOC":
-	case "LOCATION":
+	case "loc":
+	case "location":
 	    return Uri.LOCATION;
-	case "ORG":
-	case "ORGANIZATION":
+	case "org":
+	case "organization":
 	    return Uri.ORGANIZATION;
-	case "DATE":
+	case "date":
 	    return Uri.DATE;
     }
     return type;

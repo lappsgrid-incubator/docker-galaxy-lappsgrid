@@ -25,6 +25,7 @@
 		<tool file="discovery/scoring.xml"/>
 		<tool file="discovery/summarize.xml"/>
 		<tool file="discovery/ner_span_annotator.xml"/>
+		<tool file="discovery/ner_span_annotator2.xml"/>
 		<tool file="discovery/get.xml"/>
 	</section>    
 	<section id="tokenizers" name="Tokenizers">
