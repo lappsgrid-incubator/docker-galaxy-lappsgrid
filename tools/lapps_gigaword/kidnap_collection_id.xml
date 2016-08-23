@@ -9,13 +9,62 @@
       <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
     <outputs>
-        <data name="output" format="txt"/> 
         <!--
+        <data name="output" format="txt"/> 
+        -->
         <collection name="list_output" type="list" label="Output List" format="lif">
             <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
         </collection>
-        -->
   </outputs>
   <tests>
   </tests>
+    <help><![CDATA[
+Creates a dataset collection from a list of document ID values.  Below is a list of
+the document ID values for the 20 largest documents from each corpus:
+
+#Kidnap 1
+APW_ENG_20040429.0759.lif
+NYT_ENG_20080226.0192.lif
+AFP_ENG_20040929.0535.lif
+LTW_ENG_20090421.0019.lif
+APW_ENG_20080922.1280.lif
+APW_ENG_20021211.0544.lif
+LTW_ENG_19970927.0040.lif
+APW_ENG_20051128.0177.lif
+APW_ENG_20080624.0515.lif
+APW_ENG_20080922.1322.lif
+APW_ENG_20071201.0880.lif
+APW_ENG_20080421.1032.lif
+APW_ENG_20080922.1221.lif
+APW_ENG_19981230.0083.lif
+APW_ENG_20080624.0686.lif
+APW_ENG_19981230.0317.lif
+APW_ENG_20040725.0035.lif
+APW_ENG_20021211.0804.lif
+APW_ENG_19981229.1341.lif
+NYT_ENG_20101001.0057.lif
+
+#Kidnap 2
+NYT_ENG_19990908.0298.lif
+APW_ENG_20070712.0421.lif
+APW_ENG_20100923.0565.lif
+APW_ENG_20070711.1331.lif
+APW_ENG_20070712.0060.lif
+AFP_ENG_20100917.0086.lif
+APW_ENG_20070214.0557.lif
+APW_ENG_20100923.0561.lif
+APW_ENG_20070711.1181.lif
+APW_ENG_20060828.0190.lif
+APW_ENG_20100922.0937.lif
+APW_ENG_20061010.1277.lif
+APW_ENG_20100916.0803.lif
+APW_ENG_20100922.0865.lif
+AFP_ENG_20060218.0344.lif
+APW_ENG_19980321.0700.lif
+APW_ENG_19980321.0616.lif
+APW_ENG_19980321.0645.lif
+APW_ENG_20020523.0027.lif
+AFP_ENG_20060219.0174.lif
+]]>
+    </help>
 </tool>

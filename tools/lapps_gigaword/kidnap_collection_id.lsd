@@ -30,13 +30,6 @@ File corpus = new File("/corpora/${corpusName}")
 
 //def ids = keys.tokenize('\n')
 
-output.withWriter { w ->
-	w.println password
-	w.println corpus.path
-	ids.tokenize('\n').each { w.println it }
-}
-
-/*
 File destination = new File("outputs")
 if (!destination.exists()) {
     if (!destination.mkdirs()) {
@@ -44,10 +37,10 @@ if (!destination.exists()) {
     }
 }
 
-ids.each {
+ids.tokenize('\n').each {
     File input = new File(corpus, "${it}.lif")
     File output = new File(destination, input.name)
     output.text = input.text
 }
-*/
+
 
