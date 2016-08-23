@@ -3,7 +3,9 @@ String keys=args[1]
 String password = args[2]
 
 if (password != "discovery2020") {
-	throw new UnsupportedOperationException('Invalid Password')
+	//throw new UnsupportedOperationException('Invalid Password')
+	System.err.println "Invalid password."
+	System.exit(1)
 }
 
 def replacements = [["__gt__", ">"],

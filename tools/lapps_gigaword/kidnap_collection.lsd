@@ -3,6 +3,11 @@ int end = args[1] as Integer
 String corpusName = args[2]
 String password = args[3]
 
+if (password != 'discovery2020') {
+	System.err.println "Invalid password."
+	System.exit(1)
+}
+
 File corpus = new File("/corpora/${corpusName}")
 File index = new File(corpus, "index.txt")
 if (!index.exists()) {
