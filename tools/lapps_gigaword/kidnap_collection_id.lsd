@@ -1,11 +1,10 @@
 String corpusName = args[0]
 String keys=args[1]
 String password = args[2]
+File output = new File(args[3])
 
 if (password != "discovery2020") {
-	//throw new UnsupportedOperationException('Invalid Password')
-	System.err.println "Invalid password."
-	System.exit(1)
+	throw new UnsupportedOperationException('Invalid Password')
 }
 
 def replacements = [["__gt__", ">"],
@@ -29,6 +28,15 @@ replacements.each { pair ->
 
 File corpus = new File("/corpora/${corpusName}")
 
+def ids = keys.tokenize('\n')
+
+output.withWriter { w ->
+	w.println password
+	w.println corpus.path
+	ids.each { w.println it }
+}
+
+/*
 File destination = new File("outputs")
 if (!destination.exists()) {
     if (!destination.mkdirs()) {
@@ -36,10 +44,10 @@ if (!destination.exists()) {
     }
 }
 
-def ids = keys.tokenize('\n')
 ids.each {
     File input = new File(corpus, "${it}.lif")
     File output = new File(destination, input.name)
     output.text = input.text
 }
+*/
 
