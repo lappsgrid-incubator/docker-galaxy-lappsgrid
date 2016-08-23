@@ -34,7 +34,8 @@ if (!destination.exists()) {
 
 File corpus = new File("/corpora/${name}")
 keys.tokenize('\n').each {
-	new File(destination, it).text = new File(corpus, it).text
+	String filename = "${it}.lif"
+	new File(destination, filename).text = new File(corpus, filename).text
 }
 
 
