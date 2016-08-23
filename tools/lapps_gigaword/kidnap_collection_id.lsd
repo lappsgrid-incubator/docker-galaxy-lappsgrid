@@ -2,6 +2,32 @@ String corpusName = args[0]
 String ids=args[1]
 String password = args[2]
 
+def keys = '''
+APW_ENG_20040429.0759.lif
+NYT_ENG_20080226.0192.lif
+AFP_ENG_20040929.0535.lif
+LTW_ENG_20090421.0019.lif
+APW_ENG_20080922.1280.lif
+APW_ENG_20021211.0544.lif
+LTW_ENG_19970927.0040.lif
+APW_ENG_20051128.0177.lif
+APW_ENG_20080624.0515.lif
+APW_ENG_20080922.1322.lif
+'''
+
+File destination = new File("outputs")
+if (!destination.exists()) {
+    if (!destination.mkdirs()) {
+        throw new IOException("Unable to create output directory")
+    }
+}
+
+File corpus = new File('/corpora/kidnap1')
+keys.tokenize('\n').each {
+	new File(destination, it).text = new File(corpus, it).text
+}
+
+/*
 if (password != "discovery2020") {
 	throw new UnsupportedOperationException("Invalid Password: ${password}")
 }
@@ -41,5 +67,5 @@ ids.tokenize('\n').each {
     File output = new File(destination, input.name)
     output.text = input.text
 }
-
+*/
 
