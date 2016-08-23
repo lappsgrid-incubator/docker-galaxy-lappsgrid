@@ -1,7 +1,6 @@
 String corpusName = args[0]
 String ids=args[1]
 String password = args[2]
-File output = new File(args[3])
 
 if (password != "discovery2020") {
 	throw new UnsupportedOperationException("Invalid Password: ${password}")
