@@ -1,5 +1,5 @@
 <tool id="kidnap.id.collection" name="Kidnap Collection (ID List)" version="1.0.0">
-  <command interpreter="lsd">kidnap_collection_id.lsd $corpus "$docids" $password</command>
+  <command interpreter="lsd">kidnap_collection_id.lsd $corpus "$docids" $password $output $output2</command>
   <inputs>
 	  <param name="corpus" type="select">
 		<option value="kidnap1">Kidnap 1 (Gigaword)</option>
@@ -9,9 +9,8 @@
       <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
     <outputs>
-        <!--
         <data name="output" format="txt"/> 
-        -->
+        <data name="output2" format="txt"/> 
         <collection name="list_output" type="list" label="Output List" format="lif">
             <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
         </collection>
@@ -49,26 +48,26 @@ Kidnap 1
 Kidnap 2
 ========
 
-NYT_ENG_19990908.0298.lif
-APW_ENG_20070712.0421.lif
-APW_ENG_20100923.0565.lif
-APW_ENG_20070711.1331.lif
-APW_ENG_20070712.0060.lif
-AFP_ENG_20100917.0086.lif
-APW_ENG_20070214.0557.lif
-APW_ENG_20100923.0561.lif
-APW_ENG_20070711.1181.lif
-APW_ENG_20060828.0190.lif
-APW_ENG_20100922.0937.lif
-APW_ENG_20061010.1277.lif
-APW_ENG_20100916.0803.lif
-APW_ENG_20100922.0865.lif
-AFP_ENG_20060218.0344.lif
-APW_ENG_19980321.0700.lif
-APW_ENG_19980321.0616.lif
-APW_ENG_19980321.0645.lif
-APW_ENG_20020523.0027.lif
-AFP_ENG_20060219.0174.lif
+| NYT_ENG_19990908.0298.lif
+| APW_ENG_20070712.0421.lif
+| APW_ENG_20100923.0565.lif
+| APW_ENG_20070711.1331.lif
+| APW_ENG_20070712.0060.lif
+| AFP_ENG_20100917.0086.lif
+| APW_ENG_20070214.0557.lif
+| APW_ENG_20100923.0561.lif
+| APW_ENG_20070711.1181.lif
+| APW_ENG_20060828.0190.lif
+| APW_ENG_20100922.0937.lif
+| APW_ENG_20061010.1277.lif
+| APW_ENG_20100916.0803.lif
+| APW_ENG_20100922.0865.lif
+| AFP_ENG_20060218.0344.lif
+| APW_ENG_19980321.0700.lif
+| APW_ENG_19980321.0616.lif
+| APW_ENG_19980321.0645.lif
+| APW_ENG_20020523.0027.lif
+| AFP_ENG_20060219.0174.lif
 ]]>
     </help>
 </tool>
