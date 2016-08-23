@@ -15,7 +15,7 @@
               <param name="end" type="integer" value="99" max="2070"/>
           </when>
       </conditional>
-      <param name="password" type="text" label="Password" value="password"/>
+      <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
     <outputs>
         <!-- <data name="output" format="txt"/> -->
