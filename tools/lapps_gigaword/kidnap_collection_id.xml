@@ -1,5 +1,5 @@
 <tool id="kidnap.id.collection" name="Kidnap Collection (ID List)" version="1.0.0">
-  <command interpreter="lsd">kidnap_collection_id.lsd $corpus "$docids" $password $output</command>
+  <command interpreter="lsd">kidnap_collection_id.lsd $corpus "$docids" $password</command>
   <inputs>
 	  <param name="corpus" type="select">
 		<option value="kidnap1">Kidnap 1 (Gigaword)</option>
@@ -9,7 +9,9 @@
       <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
     <outputs>
+	    <!--
         <data name="output" format="txt"/> 
+        -->
         <collection name="list_output" type="list" label="Output List" format="lif">
             <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
         </collection>
