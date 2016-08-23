@@ -1,10 +1,9 @@
-String corpusName = args[0]
-String ids=args[1]
+String name = args[0]
+String keys=args[1]
 String password = args[2]
 File output = new File(args[3])
-File output2 = new File(args[4])
 
-def keys = '''
+def ids = '''
 APW_ENG_20040429.0759.lif
 NYT_ENG_20080226.0192.lif
 AFP_ENG_20040929.0535.lif
@@ -17,7 +16,6 @@ APW_ENG_20080624.0515.lif
 APW_ENG_20080922.1322.lif
 '''
 
-output.text = ids
 def replacements = [["__gt__", ">"],
     ["__lt__", "<"],
     ["__sq__", "'"],
@@ -34,9 +32,9 @@ def replacements = [["__gt__", ">"],
 ]
 
 replacements.each { pair ->
-    ids = ids.replaceAll(pair[0], pair[1])
+    keys = keys.replaceAll(pair[0], pair[1])
 }
-output2.text = ids
+output.text = keys
 
 File destination = new File("outputs")
 if (!destination.exists()) {
@@ -45,7 +43,7 @@ if (!destination.exists()) {
     }
 }
 
-File corpus = new File('/corpora/kidnap1')
+File corpus = new File("/corpora/${name}")
 keys.tokenize('\n').each {
 	new File(destination, it).text = new File(corpus, it).text
 }
