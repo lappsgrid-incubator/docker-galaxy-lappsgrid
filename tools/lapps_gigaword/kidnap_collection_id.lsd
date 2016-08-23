@@ -1,10 +1,10 @@
 String corpusName = args[0]
-String keys=args[1]
+String ids=args[1]
 String password = args[2]
 File output = new File(args[3])
 
 if (password != "discovery2020") {
-	throw new UnsupportedOperationException('Invalid Password')
+	throw new UnsupportedOperationException("Invalid Password: ${password}")
 }
 
 def replacements = [["__gt__", ">"],
@@ -23,17 +23,17 @@ def replacements = [["__gt__", ">"],
 ]
 
 replacements.each { pair ->
-    keys = keys.replaceAll(pair[0], pair[1])
+    ids = ids.replaceAll(pair[0], pair[1])
 }
 
 File corpus = new File("/corpora/${corpusName}")
 
-def ids = keys.tokenize('\n')
+//def ids = keys.tokenize('\n')
 
 output.withWriter { w ->
 	w.println password
 	w.println corpus.path
-	ids.each { w.println it }
+	ids.tokenize('\n').each { w.println it }
 }
 
 /*

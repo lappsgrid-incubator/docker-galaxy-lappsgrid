@@ -1,11 +1,11 @@
 <tool id="kidnap.id.collection" name="Kidnap Collection (ID List)" version="1.0.0">
-  <command interpreter="lsd">kidnap_collection_id.lsd $corpus $keys $password $output</command>
+  <command interpreter="lsd">kidnap_collection_id.lsd $corpus "$docids" $password $output</command>
   <inputs>
 	  <param name="corpus" type="select">
 		<option value="kidnap1">Kidnap 1 (Gigaword)</option>
 		<option value="kidnap2">Kidnap 2 (Gigaword)</option>
 	  </param>
-	  <param name="keys" type="text" size="10x40" area="True" label="Keys"/>
+	  <param name="docids" type="text" size="10x40" area="True" label="Keys"/>
       <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
     <outputs>
