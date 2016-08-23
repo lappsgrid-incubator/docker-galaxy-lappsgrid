@@ -36,7 +36,6 @@ RUN chmod a+x /usr/bin/lsd
 
 ADD ./welcome.html /etc/galaxy/web/welcome.html
 ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
-ADD ./tools /galaxy-central/tools
 ADD ./job_conf.xml /etc/galaxy/job_conf.xml
 ADD ./galaxy.ini /etc/galaxy/galaxy.ini
 ADD ./galaxy.ini /galaxy-central/config/galaxy.ini
@@ -47,6 +46,7 @@ ADD ./galaxy.ini /galaxy-central/config/galaxy.ini
 #    "--url https://testtoolshed.g2.bx.psu.edu/ -o ksuderman --name lapps_dockertypes_1_0_0 --panel-section-name Converters"
 ADD ./datatypes_conf.xml /galaxy-central/config/datatypes_conf.xml
 ADD ./text.py /galaxy-central/lib/galaxy/datatypes/text.py
+ADD ./tools /galaxy-central/tools
      
 #RUN echo "192.168.99.100 docker" >> /etc/hosts
 

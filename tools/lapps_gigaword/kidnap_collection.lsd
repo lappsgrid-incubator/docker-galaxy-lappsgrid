@@ -4,7 +4,7 @@ String corpusName = args[2]
 String password = args[3]
 
 if (password != 'discovery2020') {
-	throw new UnsupportedOperationException('Invalid Password')
+	throw new UnsupportedOperationException("Invalid Password: $password")
 }
 
 File corpus = new File("/corpora/${corpusName}")
