@@ -68,7 +68,7 @@ class Best {
 	double score = -1
 	long start = 0
 	long end = 0
-	String window
+	String window = 'not scored'
 }
 	
 interface WindowScorerI {
