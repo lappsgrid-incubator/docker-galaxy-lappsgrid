@@ -1,8 +1,8 @@
-<tool id='discovery.ner_span_annotator.2' name='Span Annotator (Editable)' version='1.0.0'>
+<tool id='discovery.ner_span_annotator.2' name='Annotator (Editable)' version='1.0.0'>
     <description>Span-based annotator</description>
-    <command interpreter="lsd">span_annotator2.lsd $annotations $input $output</command>
+    <command interpreter="lsd">ner_span_annotator2.lsd $annotations $input $output</command>
     <inputs>
-        <param name='annotations' type='text' format='txt' label='Annotations' />
+        <param name='annotations' type='text' format='txt' size="10x40" area="True" label='Annotations' />
         <param name='input' type='data' format='lif' label='input' />
     </inputs>
     <outputs>
