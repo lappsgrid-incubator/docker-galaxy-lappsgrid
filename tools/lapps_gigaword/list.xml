@@ -16,7 +16,7 @@
               <param name="end" type="integer" value="99" max="2070"/>
           </when>
       </conditional>
-	    <param name="password" type="text" label="Password"/>
+	    <param name="password" type="text" label="Password" value="discovery"/>
       <!--
     	<param name="corpus" type="select">
     		<option value="kidnap1">Kidnap 1 (Gigaword)</option>

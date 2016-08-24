@@ -15,7 +15,7 @@ view.addContains(Uri.NE, "discovery.ner_span_annotator", "")
 int id = 0
 annotations.text.tokenize('\n').each { line ->
     def tuple = line.tokenize(',')*.trim()
-    if (tuple.size != 3) {
+    if (tuple.size < 3) {
 		return new Data(Uri.ERROR, "Invalid dictionary format").asPrettyJson();
 	}
     int start = tuple[0] as Integer

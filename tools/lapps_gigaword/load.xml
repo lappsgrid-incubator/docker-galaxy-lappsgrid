@@ -7,7 +7,7 @@
     		<option value="kidnap2">Kidnap 2 (Gigaword)</option>
     	</param>
     <param name="input" type="data" format="txt"/>
-    <param name="password" type="text" label="Password"/>
+    <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
   <outputs>
     <data name="output" format="lif" label="Output"/>
