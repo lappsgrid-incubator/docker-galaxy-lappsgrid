@@ -14,7 +14,7 @@
 		        <param name="key" type="text" label="Document ID" value="NYT_ENG_19990908.0298"/>
 			</when>
     	</conditional>
-	    <param name="password" type="text" label="Password"/>
+	    <param name="password" type="text" label="Password" value="discovery"/>
     </inputs>
     <outputs>
         <data name='output' format='lif'/>
