@@ -30,9 +30,15 @@ if (start > end) {
 
 keys[start..end].each {
     File input = new File(it)
-    File output = new File(destination, input.name)
-    output.text = input.text
-    //log << "Wrote ${output.path}"
+    String filename = input.name
+    String docid = filename[0..-5]
+	Data data = Serializer.parse(input.text, Data)
+	if (data.discriminator != Uri.ERROR) {
+		Container container = new Container(data.payload)
+		container.metadata.docid = docid
+		data = new Data(Uri.LIF, contaner)
+	}
+	new File(destination, filename).text = data.asPrettyJson()
 }
 
 //logfile.text = log.join '\n'

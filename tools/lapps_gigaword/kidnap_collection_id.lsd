@@ -35,5 +35,12 @@ if (!destination.exists()) {
 File corpus = new File("/corpora/${name}")
 keys.tokenize('\n').each {
 	String filename = "${it}.lif"
-	new File(destination, filename).text = new File(corpus, filename).text
+	Data data = Serializer.parse(new File(corpus, filename).text, Data)
+	if (data.discriminator != Uri.ERROR) {
+		Container container = new Container(data.payload)
+		container.metadata.docid = it
+		data = new Data(Uri.LIF, contaner)
+	}
+	//new File(destination, filename).text = new File(corpus, filename).text
+	new File(destination, filename).text = data.asPrettyJson()
 }
