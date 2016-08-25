@@ -13,6 +13,7 @@ Container container = data.payload
 View view = container.newView()
 view.addContains(Uri.NE, "discovery.ner_span_annotator", "")
 int id = 0
+
 annotations.text.tokenize('\n').each { line ->
     def tuple = line.tokenize(',')*.trim()
     if (tuple.size < 3) {

@@ -9,9 +9,29 @@ if (data.discriminator == Uri.ERROR) {
     output.text = input.text
     return
 }
+
+def replacements = [["__gt__", ">"],
+    ["__lt__", "<"],
+    ["__sq__", "'"],
+    ["__dq__", '"'],
+    ["__ob__", "["],
+    ["__cb__", "]"],
+    ["__oc__", "{"],
+    ["__cc__", "}"],
+    ["__at__", "@"],
+    ["__cn__", "\n"],
+    ["__cr__", "\r"],
+    ["__tc__", "\t"],
+    ["__pd__", "#"]
+]
+
+replacements.each { pair ->
+    annotations = annotations.replaceAll(pair[0], pair[1])
+}
+
 Container container = data.payload
 View view = container.newView()
-view.addContains(Uri.NE, "discovery.ner_span_annotator", "")
+view.addContains(Uri.NE, "discovery.ner_span_annotator2", "")
 int id = 0
 annotations.text.tokenize('\n').each { line ->
     def tuple = line.tokenize(',')*.trim()
