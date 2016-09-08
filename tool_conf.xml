@@ -58,7 +58,7 @@
 		<tool file="lapps_gate/gate.ner_2.0.0.xml"/>
 		<tool file='lapps_opennlp/opennlp.namedentityrecognizer.xml' />
 		<tool file="lapps_lingpipe/cmu.dictionaryNER_1.0.0.xml"/>
-		<tool file="lapps_lingpipe/vassar.ner_1.0.0.xml"/>
+		<!-- <tool file="lapps_lingpipe/vassar.ner_1.0.0.xml"/> -->
         <tool file="lapps_dbpedia/spotlight.xml"/>
         <tool file="lapps_common/nerfix.xml"/>
 	</section>
@@ -113,7 +113,7 @@
 		<tool file="lapps_lingpipe/vassar.tokenizer_1.0.0.xml"/>
 		<tool file="lapps_lingpipe/vassar.splitter_1.0.0.xml"/>
 		<tool file="lapps_lingpipe/vassar.tagger_1.0.0.xml"/>
-		<tool file="lapps_lingpipe/vassar.ner_1.0.0.xml"/>
+		<!-- <tool file="lapps_lingpipe/vassar.ner_1.0.0.xml"/> -->
 		<tool file="lapps_lingpipe/cmu.dictionaryNER_1.0.0.xml"/>
     </section>
     <section id="dbpedia" name="DBpedia">
