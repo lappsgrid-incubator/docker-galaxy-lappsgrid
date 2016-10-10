@@ -1,0 +1,11 @@
+<tool id='convert.json2gate_2.0.0' name='JsonToGate v2.0.0' version='2.0.0'>
+  <description>Converts LAPPS JSON/LD into GATE documents.</description>
+  <command interpreter='lsd'>./invoke.lsd convert.json2gate_2.0.0 $input $output</command>
+  <inputs>
+    <param name='input' type='data' format='lif' label='input' />
+  </inputs>
+  <outputs>
+    <data name='output' format='gate' />
+  </outputs>
+  <help>Converts LAPPS JSON/LD into GATE documents.</help>
+</tool>

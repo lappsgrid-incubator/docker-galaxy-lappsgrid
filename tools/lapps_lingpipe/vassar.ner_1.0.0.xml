@@ -1,0 +1,11 @@
+<tool id='vassar.lingpipe.ner_1.0.0' name='Lingpipe NER v1.0.0' version='1.0.0'>
+  <description>(Vassar)</description>
+  <command interpreter='lsd'>invoke.lsd LingpipeNER $input $output</command>
+  <inputs>
+    <param name='input' type='data' format='lif,json' label='input' />
+  </inputs>
+  <outputs>
+    <data name='output' format='lif' />
+  </outputs>
+  <help>Lingpipe Named Entity Recognizer</help>
+</tool>

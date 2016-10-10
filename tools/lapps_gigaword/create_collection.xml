@@ -1,15 +1,27 @@
-<tool id="gigaword.collection" name="Create Gigaword Collection" version="1.0.0">
-  <command interpreter="lsd">create_collection.lsd $input $start $end</command>
-
+<tool id="create.collection" name="Create Kidnap Collection" version="1.0.0">
+  <command interpreter="lsd">kidnap_collection.lsd $corpus.start $corpus.end $corpus.name $password</command>
   <inputs>
-    <param name="input" type="data" format="txt" label="Index List" help="List of Gigaword document ID values." />
-      <param name="start" type="integer" value="0" min="0"/>
-      <param name="end" type="integer" value="392" max="392"/>
+      <conditional name="corpus">
+          <param name="name" type="select">
+            <option value="kidnap1">Kidnap 1 (Gigaword)</option>
+            <option value="kidnap2">Kidnap 2 (Gigaword)</option>
+          </param>
+          <when value="kidnap1">
+              <param name="start" type="integer" value="0" min="0"/>
+              <param name="end" type="integer" value="99" max="2624"/>
+          </when>
+          <when value="kidnap2">
+              <param name="start" type="integer" value="0" min="0"/>
+              <param name="end" type="integer" value="99" max="2071"/>
+          </when>
+      </conditional>
+      <param name="password" type="text" label="Password" value="discovery"/>
   </inputs>
-  <outputs>
-    <collection name="list_output" type="list" label="Output List" format="ldc">
-        <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
-    </collection>
+    <outputs>
+        <!-- <data name="output" format="txt"/> -->
+        <collection name="list_output" type="list" label="Output List" format="lif">
+            <discover_datasets pattern="__designation_and_ext__" directory="outputs" visible="false"/>
+        </collection>
   </outputs>
   <tests>
   </tests>

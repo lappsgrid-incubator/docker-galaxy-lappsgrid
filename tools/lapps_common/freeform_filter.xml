@@ -1,0 +1,14 @@
+<tool id='lapps.tools.freeform_filter' name='Free Form Annotation Filter' version='1.0.0'>
+    <description>Select views with the specified annotation type.</description>
+    <command interpreter='lsd'>freeform_filter.lsd $input $output $type $pretty</command>
+    <inputs>
+        <param name='input' type='data' format='json,lif' label='Input'/>
+        <param name="type" type="text" size="10x40" area="True" label="Annotations"/>
+        <param name="pretty" type="boolean" label="Pretty print result"/>
+    </inputs>
+    <outputs>
+        <data name='output' format='lif'/>
+    </outputs>
+    <help>Copies the view(s) with the selected annotation types to the end of the list of views.
+    </help>
+</tool>

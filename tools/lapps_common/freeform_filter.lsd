@@ -1,0 +1,66 @@
+import static org.lappsgrid.discriminator.Discriminators.Uri
+
+File input = new File(args[0])
+File output = new File(args[1])
+String types = args[2]
+boolean prettyPrint = args[3] as Boolean
+
+def replacements = [["__gt__", ">"],
+    ["__lt__", "<"],
+    ["__sq__", "'"],
+    ["__dq__", '"'],
+    ["__ob__", "["],
+    ["__cb__", "]"],
+    ["__oc__", "{"],
+    ["__cc__", "}"],
+    ["__at__", "@"],
+    ["__cn__", "\n"],
+    ["__cr__", "\r"],
+    ["__tc__", "\t"],
+    ["__pd__", "#"]
+]
+
+replacements.each { pair ->
+    types = types.replaceAll(pair[0], pair[1])
+}
+
+def set = new HashSet<String>(types.tokenize('\n'))
+
+//def shell = new GroovyShell()
+//String condition = "view.metadata.contains['$type']"
+//def test = shell.evaluate("{ view -> $condition }")
+
+//println "Condition : $condition"
+Data data = Serializer.parse(input.text, Data)
+Container container = new Container(data.payload)
+Container copy = new Container()
+copy.text = container.text
+copy.language = container.language
+copy.metadata = container.metadata
+//copy.views << container.views.findAll(test)
+List views = []
+container.views.each { view ->
+	for (String type : set) {
+		if (view.metadata.contains[type]) {
+			views << view
+			break
+		}
+	}
+}
+		
+//List views = container.views.findAll { view -> set
+//views.each { copy.views << it }
+if (views && views.size() > 0) {
+	copy.views.addAll(views)
+}
+
+data = new DataContainer(copy)
+if (prettyPrint) {
+	output.text = data.asPrettyJson()
+}
+else {
+	output.text = data.asJson()
+}
+
+
+

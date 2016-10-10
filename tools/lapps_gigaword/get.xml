@@ -1,10 +1,22 @@
 <tool id='gigaword.get' name='Gigaword Get' version='1.0.0'>
     <description>Retreive a single document from the Gigaword Datasource.</description>
-    <command interpreter='lsd'>get.lsd $key $output</command>
+    <command interpreter='lsd'>get.lsd $corpus.key $output $corpus.name $password</command>
     <inputs>
-        <param name="key" type="text" label="Document ID" value="NYT_ENG_20050622.0308"/>
+    	<conditional name="corpus">
+			<param name="name" type="select">
+				<option value="kidnap1">Kidnap 1 (Gigaword)</option>
+				<option value="kidnap2">Kidnap 2 (Gigaword)</option>
+			</param>
+			<when value="kidnap1">
+		        <param name="key" type="text" label="Document ID" value="AFP_ENG_19940517.0255"/>
+			</when>
+			<when value="kidnap2">
+		        <param name="key" type="text" label="Document ID" value="NYT_ENG_19990908.0298"/>
+			</when>
+    	</conditional>
+	    <param name="password" type="text" label="Password" value="discovery"/>
     </inputs>
     <outputs>
-        <data name='output' format='ldc'/>
+        <data name='output' format='lif'/>
     </outputs>
 </tool>

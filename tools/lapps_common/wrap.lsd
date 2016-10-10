@@ -1,0 +1,22 @@
+import static org.lappsgrid.discriminator.Discriminators.Uri
+
+String format = args[0]
+File input = new File(args[1])
+File output = new File(args[2])
+
+String type = Uri.TEXT
+if (format == 'txt') {
+    type = Uri.TEXT
+}
+else if (format == 'xml') {
+    type = Uri.XML
+}
+else if (format == 'gate') {
+    type = Uri.GATE
+}
+
+Data data = new Data()
+data.discriminator = type
+data.payload = input.text
+
+output.text = data.asJson()

@@ -1,0 +1,27 @@
+<tool id="masc.get" name="Get Document" version="2.0.0">
+  <description>Retrieves a single document from MASC.</description>
+  <command interpreter="lsd">get.lsd $key $type $output</command>
+  <inputs>
+    <param name="key" type="text" label="Key" value="MASC3-0203"/>
+      <param name="type" type="select">
+          <option value="masc.text_2.2.0">Text</option>
+          <option value="masc.lif_2.2.0">LIF</option>
+          <option value="masc.json_2.2.0">Gold Annotations</option>
+      </param>
+  </inputs>
+  <outputs>
+    <data name="output" format="lif" label="MASC Document"/>
+  </outputs>
+  <!--
+  <tests>
+    <test>
+      <param name="input" value="/Users/suderman/Projects/Galaxy/text.json"/>
+      <output name="output" file="/Users/suderman/Projects/Galaxy/tokens.json"/>
+    </test>
+  </tests>
+  -->
+  <help>Retrieves a single document from MASC 3.0.0.
+  
+Use the *List MASC* tool to obtain a list of valid document ID values.
+  </help>
+</tool>

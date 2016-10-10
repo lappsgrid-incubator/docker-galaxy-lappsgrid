@@ -1,0 +1,11 @@
+<tool id='vassar.lingpipe.tokenizer_1.0.0' name='Lingpipe Tokenizer v1.0.0' version='1.0.0'>
+  <description>(Vassar)</description>
+  <command interpreter='lsd'>invoke.lsd LingpipeTokenizer $input $output</command>
+  <inputs>
+    <param name='input' type='data' format='txt,lif,json' label='input' />
+  </inputs>
+  <outputs>
+    <data name='output' format='lif' />
+  </outputs>
+  <help>Lingpipe Tokenizer</help>
+</tool>

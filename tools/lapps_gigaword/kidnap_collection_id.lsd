@@ -1,0 +1,46 @@
+String name = args[0]
+String keys=args[1]
+String password = args[2]
+
+if (password != 'discovery2020') {
+	throw new UnsupportedOperationException("Invalid Password: $password")
+}
+
+def replacements = [["__gt__", ">"],
+    ["__lt__", "<"],
+    ["__sq__", "'"],
+    ["__dq__", '"'],
+    ["__ob__", "["],
+    ["__cb__", "]"],
+    ["__oc__", "{"],
+    ["__cc__", "}"],
+    ["__at__", "@"],
+    ["__cn__", "\n"],
+    ["__cr__", "\r"],
+    ["__tc__", "\t"],
+    ["__pd__", "#"]
+]
+
+replacements.each { pair ->
+    keys = keys.replaceAll(pair[0], pair[1])
+}
+
+File destination = new File("outputs")
+if (!destination.exists()) {
+    if (!destination.mkdirs()) {
+        throw new IOException("Unable to create output directory")
+    }
+}
+
+File corpus = new File("/corpora/${name}")
+keys.tokenize('\n').each {
+	String filename = "${it}.lif"
+	Data data = Serializer.parse(new File(corpus, filename).text, Data)
+	if (data.discriminator != Uri.ERROR) {
+		Container container = new Container(data.payload)
+		container.metadata.docid = it
+		data = new Data(Uri.LIF, contaner)
+	}
+	//new File(destination, filename).text = new File(corpus, filename).text
+	new File(destination, filename).text = data.asPrettyJson()
+}

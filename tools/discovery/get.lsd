@@ -1,0 +1,2 @@
+File output = new File(args[0])
+output.text = new File("/corpora/kidnap1/AFP_ENG_19941109.0412.lif").text
