@@ -1,12 +1,14 @@
 # Lappsgrid Galaxy Flavour 
 #
 
-FROM bgruening/galaxy-stable
+FROM bgruening/galaxy-stable:16.01
 
 MAINTAINER Keith Suderman, suderman@cs.vassar.edu
 
 ENV BARE=True
-ENV GALAXY_CONFIG_BRAND="LAPPS Discovery" 
+
+# This seems to be ignored
+ENV GALAXY_CONFIG_BRAND=WTF 
 
 #ENV GALAXY_UID=1000 
 #ENV GALAXY_GID=1000 
@@ -27,19 +29,18 @@ RUN wget http://www.anc.org/downloads/docker/lsd-latest.tgz
 RUN tar xzvf lsd-latest.tgz
 RUN mv lsd* /usr/bin
 
-#ADD ./packages/lsd-latest.tgz /usr/bin/
-#ADD ./lsd /usr/bin
-#ADD ./lsd-2.2.0.jar /usr/bin
 ADD ./packages/brat.tgz /galaxy-central/config/plugins/visualizations
 #ADD ./packages/svm_rank_linux64.tgz /usr/bin
 RUN chmod a+x /usr/bin/lsd
 
-ADD ./welcome.html /etc/galaxy/web/welcome.html
+#ADD ./welcome.html /etc/galaxy/web/welcome.html
 ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
 ADD ./job_conf.xml /etc/galaxy/job_conf.xml
-ADD ./galaxy.ini /etc/galaxy/galaxy.ini
-ADD ./galaxy.ini /galaxy-central/config/galaxy.ini
 #ADD ./galaxy.ini /etc/galaxy/galaxy.ini
+ADD ./galaxy.ini /galaxy-central/config/galaxy.ini
+ADD ./welcome.html /galaxy-central/welcome.html
+ADD ./welcome.html /galaxy-central/static/welcome.html
+ADD ./welcome.html /export/galaxy-central/welcome.html
 
 #RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 #RUN install-repository \

@@ -1,29 +1,36 @@
 DOCKER=docker
-IMAGE=lappsgrid/galaxy-discovery
-TARFILE=galaxy-lappsgrid-cmu.tar
+IMAGE=lappsgrid/galaxy-deiis
+#VOLUME=-v /Users/suderman/docker/galaxy:/export
+
 #TAG=discovery
 
-discovery:
+latest:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE) .
 
-cmu:
+deiis:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE):cmu .
 
 no-cache:
-	$(DOCKER) build --no-cache -f Dockerfile.cmu -t $(IMAGE):cmu .
+	$(DOCKER) build --no-cache -f Dockerfile.cmu -t $(IMAGE) .
 
-latest:
-	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
+#latest:
+#	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
 
 push:
 	$(DOCKER) push $(IMAGE)
 
 tag:
+	if [ -z "$(TAG)" ] ; then @echo "TAG has not been defined." ;  fi
 	if [ -n "$(TAG)" ] ; then $(DOCKER) tag $(IMAGE) $(IMAGE):$(TAG) ; $(DOCKER) push $(IMAGE):$(TAG) ; fi
 
-
 run:
-	docker run --name galaxy -d -p 80:80 -p 9001:9001 -p 9002:9002 -p 8800:8800 lappsgrid/galaxy-discovery
+	docker run --name galaxy -d -p 80:80 $(IMAGE)
+
+login:
+	docker exec -it galaxy /bin/bash
+
+stop:
+	docker rm -f galaxy
 
 help:
 	@echo "GOALS"

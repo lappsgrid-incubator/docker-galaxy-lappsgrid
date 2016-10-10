@@ -5,7 +5,7 @@
 		<tool file="lapps_common/wrap.xml"/>
     </section>
     <section id="cmu-791" name="DEIIS (11-791)">
-    	<tool file="squad/proxy.xml"/>
+    	<tool file="deiis/proxy.xml"/>
     </section>
 	<section id="discovery" name="Discovery 2020">
 		<tool file="discovery/passage_extractor.xml"/>
