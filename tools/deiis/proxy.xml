@@ -1,0 +1,12 @@
+<tool id='cmu.squad.proxy' name='CMU Squad Proxy' version='1.0.0'>
+  <description>Stanford Named Entity Recognizer (Vassar)</description>
+  <command interpreter='lsd'>proxy.lsd $url $input $output</command>
+  <inputs>
+  	<param name='url' type='text' label='Service URL'/>
+    <param name='input' type='data' format='lif' label='Input' />
+  </inputs>
+  <outputs>
+    <data name='output' format='lif' />
+  </outputs>
+  <help>A proxy service that can invoke other services at the user supplied URL.</help>
+</tool>

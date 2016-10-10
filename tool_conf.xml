@@ -4,21 +4,8 @@
 		<tool file="data_source/upload.xml"/>
 		<tool file="lapps_common/wrap.xml"/>
     </section>
-    <!--
-	<section id="datasource" name="MASC">
-		<tool file="lapps_masc/get.xml"/>
-		<tool file="lapps_masc/list.xml"/>
-        <tool file="lapps_masc/query.xml"/>
-        <tool file="lapps_masc/create_collection.xml"/>
-        <tool file="lapps_masc/query_collection.xml"/>
-	</section>
-	-->
-    <section id="ldc" name="Kidnap Corpus (Gigaword)">
-        <tool file="lapps_gigaword/list.xml"/>
-        <tool file="lapps_gigaword/get.xml"/>
-        <tool file="lapps_gigaword/kidnap_collection.xml"/>
-        <tool file="lapps_gigaword/kidnap_collection_id.xml"/>
-        <!-- <tool file="lapps_gigaword/query.xml"/> -->
+    <section id="cmu-791" name="DEIIS (11-791)">
+    	<tool file="squad/proxy.xml"/>
     </section>
 	<section id="discovery" name="Discovery 2020">
 		<tool file="discovery/passage_extractor.xml"/>
