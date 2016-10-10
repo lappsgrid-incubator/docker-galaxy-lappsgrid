@@ -21,7 +21,6 @@ push:
 tag:
 	if [ -n "$(TAG)" ] ; then $(DOCKER) tag $(IMAGE) $(IMAGE):$(TAG) ; $(DOCKER) push $(IMAGE):$(TAG) ; fi
 
-
 run:
 	docker run --name galaxy -d -p 80:80 -p 9001:9001 -p 9002:9002 -p 8800:8800 lappsgrid/galaxy-discovery
 
