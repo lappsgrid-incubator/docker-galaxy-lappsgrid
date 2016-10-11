@@ -36,11 +36,12 @@ RUN chmod a+x /usr/bin/lsd
 #ADD ./welcome.html /etc/galaxy/web/welcome.html
 ADD ./tool_conf.xml /galaxy-central/config/tool_conf.xml
 ADD ./job_conf.xml /etc/galaxy/job_conf.xml
-#ADD ./galaxy.ini /etc/galaxy/galaxy.ini
+ADD ./galaxy.ini /etc/galaxy/galaxy.ini
 ADD ./galaxy.ini /galaxy-central/config/galaxy.ini
-ADD ./welcome.html /galaxy-central/welcome.html
-ADD ./welcome.html /galaxy-central/static/welcome.html
-ADD ./welcome.html /export/galaxy-central/welcome.html
+#ADD ./welcome.html /galaxy-central/welcome.html
+#ADD ./welcome.html /galaxy-central/static/welcome.html
+#ADD ./welcome.html /export/galaxy-central/welcome.html
+ADD ./welcome.html /etc/galaxy/web/welcome.html
 
 #RUN add-tool-shed --url 'https://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 #RUN install-repository \
