@@ -1,0 +1,22 @@
+<tool id='discovery.passage.extractor.parameters' name='Parametrized Passage Extractor' version='1.0.0'>
+    <description>mark passages that contain one of the key terms with restriction parameters.</description>
+    <command interpreter="lsd">passage_extractor.lsd $type "$terms" $sizelimit $numlimit $matchlimit $input $output</command>
+    <inputs>
+        <param name='input' type='data' format='lif,json' label='input' />
+        <param name="terms" type="text" size="10x40" area="True" label="Key terms"/>
+        <param name="sizelimit" type="text" size="10x40" area="True" value="0" label="Maximum Size of Windows (0 for unlimited)"/>
+        <param name="numlimit" type="text" size="10x40" area="True" value="0" label="Maximum Number of Windows (0 for unlimited)"/>
+        <param name="matchlimit" type="text" size="10x40" area="True" value="0" label="Maximum Keyterm Matches (0 for unlimited)"/>
+        <param name="type" type="select">
+            <option value="Sentence">Sentences</option>
+            <option value="Paragraph">Paragraphs</option>
+        </param>
+    </inputs>
+    <outputs>
+        <data name='output' format='lif'/>
+    </outputs>
+    <help><![CDATA[
+Extracts passages, either *Sentence* or *Paragraph* at this time
+]]>
+    </help>
+</tool>
