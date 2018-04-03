@@ -1,18 +1,23 @@
 DOCKER=docker
-IMAGE=lappsgrid/galaxy-deiis
+IMAGE=lappsgrid/galaxy
 #VOLUME=-v /Users/suderman/docker/galaxy:/export
 
-#TAG=discovery
+TAG=dev
 
+latest: PASSWORD = $(shell curl -sSL http://api.lappsgrid.org/password?length=16)	
+latest: SECRET = $(shell curl -sSL http://api.lappsgrid.org/password?length=32\&chars=abcdef0123456789)
 latest:
-	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE) .
+	$(DOCKER) build --build-arg PASSWORD=$(PASSWORD) --build-arg SECRET=$(SECRET) -t $(IMAGE) .
 
 deiis:
 	$(DOCKER) build -f Dockerfile.cmu -t $(IMAGE):cmu .
 
 no-cache:
-	$(DOCKER) build --no-cache -f Dockerfile.cmu -t $(IMAGE) .
+	$(DOCKER) build --no-cache -f Dockerfile -t $(IMAGE) .
 
+test:
+	docker build -f Dockerfile.test -t $(IMAGE) .
+	
 #latest:
 #	$(DOCKER) build -f Dockerfile -t $(IMAGE) .
 
@@ -24,7 +29,7 @@ tag:
 	if [ -n "$(TAG)" ] ; then $(DOCKER) tag $(IMAGE) $(IMAGE):$(TAG) ; $(DOCKER) push $(IMAGE):$(TAG) ; fi
 
 run:
-	docker run --name galaxy -d -p 80:80 $(IMAGE)
+	docker run --name galaxy -d -p 80:80 -p 8000:8000 $(IMAGE)
 
 login:
 	docker exec -it galaxy /bin/bash

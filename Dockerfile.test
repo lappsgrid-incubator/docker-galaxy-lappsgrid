@@ -1,0 +1,68 @@
+# Lappsgrid Galaxy Flavour 
+#
+
+FROM ubuntu:14.04
+
+MAINTAINER Keith Suderman, suderman@cs.vassar.edu
+
+ENV BARE=True
+ENV TERM=xterm
+
+RUN apt-get update && apt-get install -y curl wget aptitude
+RUN apt-get install -y git zip unzip emacs24-nox apt-transport-https ca-certificates
+
+# Download the script used to install Java, Postgres, and LSD.
+ADD http://downloads.lappsgrid.org/scripts/install-java.sh /usr/bin/install-java.sh
+ADD http://downloads.lappsgrid.org/scripts/install-postgres.sh /usr/bin/install-postgres.sh
+ADD http://downloads.lappsgrid.org/scripts/install-lsd.sh /usr/bin/install-lsd.sh
+
+# Run the scripts we just downloaded.
+RUN cd /usr/bin && \
+	chmod +x install*.sh &&\
+	./install-java.sh && \
+	./install-postgres.sh && \
+	./install-lsd.sh
+
+# Create the galaxy user and clone the GitHub repositories.
+RUN adduser galaxy --system --group && \
+	cd /home/galaxy && \
+	git clone http://github.com/lappsgrid-incubator/Galaxy.git galaxy && \
+	git clone http://github.com/lappsgrid-incubator/GalaxyMods.git mods
+
+# Create the galaxy database and user.
+RUN service postgresql start && \
+	sudo -u postgres psql -c "create user galaxy with password 'galaxy'" && \
+	sudo -u postgres psql -c "create database galaxy" && \
+	sudo -u postgres psql -c "grant all privileges on database galaxy to galaxy" && \
+	service postgresql stop
+	
+# Ensure we are using the correct branch for Galaxy.
+RUN cd /home/galaxy/galaxy && git checkout lapps
+
+# Patch the galaxy.ini file with the port number, installation directory, database 
+# password, and id_secret.
+RUN cd /home/galaxy && \
+	cat mods/config/galaxy.ini | \
+	sed "s/__DB_PASSWORD__/galaxy/" | \
+	sed "s/__ID_SECRET__/8a801a605d7e3a3c6e5c3276fd948c06/" | \
+	sed "s/__PORT__/80/" | \
+	sed "s|__INSTALL_DIR__|/home/galaxy|g" > galaxy/config/galaxy.ini
+
+
+# Make sure everything in /home/galaxy is owned by the galaxy user.
+RUN chown -R galaxy:galaxy /home/galaxy
+
+# Mark folders as imported from the host.
+VOLUME ["/export/", "/data/", "/var/lib/docker"]
+
+# Expose port 80 (webserver), 21 (FTP server), 8800 (Proxy)
+EXPOSE :80
+EXPOSE :21
+EXPOSE :22
+EXPOSE :8800
+EXPOSE :9002
+
+# Autostart script that is invoked during container start
+ADD ./galaxy.sh /usr/bin/startup
+CMD ["/usr/bin/startup"]    
+    
